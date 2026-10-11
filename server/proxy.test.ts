@@ -1,20 +1,45 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { proxyApi } from "./proxy";
 import { createApp } from "./app";
-import handler from "../api/proxy";
+import handler, { routeRequest } from "../api/proxy";
+import { createServer } from "node:http";
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.unstubAllEnvs();
 });
 describe("Hosted API routing", () => {
   const frontend = "https://rozgar-link.vercel.app";
+  it("runs as a standard Node function and returns JSON without crashing", async () => {
+    vi.stubEnv("BACKEND_URL", "");
+    const server = createServer(handler);
+    server.listen(0, "127.0.0.1");
+    await new Promise<void>((resolve) => server.on("listening", resolve));
+    try {
+      const port = (server.address() as { port: number }).port;
+      const response = await fetch(
+        `http://127.0.0.1:${port}/api/proxy?__route=auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            identifier: "test@example.test",
+            password: "test-password",
+          }),
+        },
+      );
+      expect(response.status).toBe(503);
+      expect((await response.json()).error).toContain("not been configured");
+    } finally {
+      await new Promise<void>((resolve) => server.close(() => resolve()));
+    }
+  });
   it("restores a nested API path rewritten by Vercel", async () => {
     vi.stubEnv("BACKEND_URL", "https://backend.example.test");
     const fetchMock = vi
       .fn()
       .mockResolvedValue(Response.json({ session: null }));
     vi.stubGlobal("fetch", fetchMock);
-    await handler.fetch(new Request(frontend + "/api/proxy?__route=auth/me"));
+    await routeRequest(new Request(frontend + "/api/proxy?__route=auth/me"));
     expect(String(fetchMock.mock.calls[0][0])).toBe(
       "https://backend.example.test/api/auth/me",
     );
