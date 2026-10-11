@@ -1424,6 +1424,25 @@ footer small {
   line-height: 1.8;
   max-width: 460px;
 }
+.matches-heading h2,
+.matches-empty .empty-state h2 {
+  font-weight: 750;
+  text-shadow: var(--workspace-text-shadow);
+}
+.matches-heading p,
+.matches-empty .empty-state p {
+  font-weight: 600;
+  text-shadow: 0 2px 4px #147e761a;
+}
+.matches-empty .empty-state {
+  background: var(--stat-background);
+  border: 1px solid var(--stat-border);
+  box-shadow: var(--stat-shadow);
+}
+.matches-empty .empty-state > svg {
+  color: var(--teal);
+  filter: drop-shadow(0 3px 5px #147e7626);
+}
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

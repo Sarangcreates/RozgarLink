@@ -103,7 +103,7 @@ export function ApplicantDashboard() {
           Explore my path
         </Link>
       </div>
-      <div className="section-heading">
+      <div className="section-heading matches-heading">
         <div>
           <h2>Your strongest matches</h2>
           <p>
@@ -134,14 +134,16 @@ export function ApplicantDashboard() {
           })}
         </div>
       ) : (
-        <Empty
-          title="Not yet eligible for any listed opportunity"
-          text="Every failed condition is explained. Start with a beginner learning path and review the required qualifications and locations."
-        >
-          <Link className="btn primary" to="/goal">
-            Explore beginner path
-          </Link>
-        </Empty>
+        <div className="matches-empty">
+          <Empty
+            title="Not yet eligible for any listed opportunity"
+            text="Every failed condition is explained. Start with a beginner learning path and review the required qualifications and locations."
+          >
+            <Link className="btn primary" to="/goal">
+              Explore beginner path
+            </Link>
+          </Empty>
+        </div>
       )}
       {audit && (
         <Modal title="Explain this match" wide onClose={() => setAudit(null)}>
