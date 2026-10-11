@@ -613,9 +613,27 @@ textarea {
     0 14px 28px #172c3b26;
 }
 .how-grid {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
+}
+.how-wave {
+  position: absolute;
+  top: -45px;
+  left: -8.139535%;
+  width: 116.27907%;
+  height: calc(100% + 110px);
+  color: var(--teal);
+  opacity: 0.18;
+  filter: drop-shadow(0 8px 14px #147e7626);
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 250ms ease !important;
+}
+.how-grid.wave-active > .how-wave {
+  opacity: 0.36;
 }
 .how-card {
   background: #f8faf9;
@@ -644,7 +662,6 @@ textarea {
     z-index: 2;
   }
   .how-grid:has(> .how-card:hover) > .how-card:not(:hover) {
-    opacity: 0.75;
     transform: scale(0.97);
   }
 }
@@ -711,6 +728,11 @@ footer > svg {
   flex-shrink: 0;
   color: var(--teal);
 }
+.landing > footer,
+.login-page > footer {
+  border-top: 0;
+  background: white;
+}
 footer small {
   margin-left: auto;
   font-size: 9px;
@@ -757,6 +779,14 @@ footer small {
   padding: 70px 10%;
   align-items: center;
   min-height: calc(100vh - 160px);
+}
+.login-main::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 55px;
+  background: linear-gradient(to bottom, transparent, white);
+  pointer-events: none;
 }
 .login-intro > p {
   color: #799084;

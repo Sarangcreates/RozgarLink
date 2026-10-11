@@ -15,6 +15,7 @@ import { Logo, Footer } from "../components/Layout";
 import MandalaBackdrop from "../components/MandalaBackdrop";
 import WelcomeHeadline from "../components/WelcomeHeadline";
 import CirclePatternBackdrop from "../components/CirclePatternBackdrop";
+import HoverWaveGrid from "../components/HoverWaveGrid";
 export default function Landing() {
   const { data } = useStore();
   const navigate = useNavigate();
@@ -169,7 +170,7 @@ export default function Landing() {
             <br />
             to where you want to go.
           </h2>
-          <div className="how-grid">
+          <HoverWaveGrid>
             {[
               {
                 icon: UserRound,
@@ -194,7 +195,7 @@ export default function Landing() {
                 <p>{x.text}</p>
               </div>
             ))}
-          </div>
+          </HoverWaveGrid>
         </section>
         <section id="principles" className="principles-banner">
           <ShieldCheck size={44} />
