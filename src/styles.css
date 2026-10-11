@@ -2447,3 +2447,17 @@ td small {
       opacity 280ms ease !important;
   }
 }
+/* Shared candidate directory uses the existing teal panel theme. */
+.candidate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+.candidate-grid .panel {
+  padding: 24px;
+}
+.candidate-grid ul {
+  padding-left: 20px;
+  line-height: 1.8;
+}

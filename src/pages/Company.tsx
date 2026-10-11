@@ -28,9 +28,17 @@ import {
 } from "../components/ui";
 
 export function CompanyDashboard() {
+  const [search, setSearch] = useState("");
+  const [visibleCount, setVisibleCount] = useState(9);
   const { data, session } = useStore(),
     company = data.companies.find((c) => c.id === session!.id)!;
   const jobs = data.opportunities.filter((j) => j.companyId === company.id);
+  const candidates = data.applicants.filter((a) =>
+    [a.name, a.location, a.degree, ...a.skills.map((s) => s.name)]
+      .join(" ")
+      .toLowerCase()
+      .includes(search.trim().toLowerCase()),
+  );
   const pool = jobs
     .flatMap((j) => data.applicants.map((a) => scoreApplicant(a, j)))
     .filter((r) => r.eligible);
@@ -149,6 +157,87 @@ export function CompanyDashboard() {
         The leaderboard evaluates profiles shared by applicants. These are
         matching profiles, not submitted applications.
       </p>
+      <section aria-labelledby="candidate-directory-title">
+        <div className="section-heading">
+          <div>
+            <h2 id="candidate-directory-title">Find job seekers</h2>
+            <p>
+              Browse shared profiles. Sample profiles are fictional and have no
+              login accounts.
+            </p>
+          </div>
+        </div>
+        <label htmlFor="candidate-search">
+          Search by name, skill, location or qualification
+        </label>
+        <input
+          id="candidate-search"
+          type="search"
+          value={search}
+          placeholder="Try Python, Pune or Java"
+          onChange={(event) => {
+            setSearch(event.target.value);
+            setVisibleCount(9);
+          }}
+        />
+        <p className="small-note" role="status">
+          {candidates.length} matching profiles
+        </p>
+        <div className="candidate-grid">
+          {candidates.slice(0, visibleCount).map((a) => {
+            const matches = jobs
+              .map((j) => scoreApplicant(a, j))
+              .filter((r) => r.eligible);
+            return (
+              <article className="panel" key={a.id}>
+                {a.sample && (
+                  <p className="eyebrow">FICTIONAL SAMPLE PROFILE</p>
+                )}
+                <h3>{a.name}</h3>
+                <p>
+                  {a.degree} · {a.location}
+                </p>
+                <p>{a.experienceYears} years of experience</p>
+                <ul>
+                  {a.skills.map((skill) => (
+                    <li key={skill.name}>
+                      {skill.name} · level {skill.level}/5
+                    </li>
+                  ))}
+                </ul>
+                <p className="small-note">
+                  {matches.length} eligible matches with your opportunities
+                </p>
+                {matches.length > 0 && (
+                  <div>
+                    {matches.map((match) => (
+                      <p key={match.opportunityId}>
+                        <Link to={"/opportunity/" + match.opportunityId}>
+                          {
+                            jobs.find((j) => j.id === match.opportunityId)!
+                              .title
+                          }
+                        </Link>{" "}
+                        <TierChip tier={match.tier} /> ·{" "}
+                        {match.score?.toFixed(1)} points
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
+        {!candidates.length && <p>No shared profiles match this search.</p>}
+        {visibleCount < candidates.length && (
+          <button
+            className="btn secondary"
+            onClick={() => setVisibleCount((count) => count + 9)}
+          >
+            Show more profiles
+          </button>
+        )}
+      </section>
     </>
   );
 }

@@ -46,6 +46,7 @@ export interface ProgressEvent {
   tier?: Tier | null;
 }
 export interface Applicant {
+  sample?: boolean;
   discoverable?: boolean;
   id: string;
   name: string;

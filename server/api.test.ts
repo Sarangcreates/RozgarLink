@@ -54,7 +54,7 @@ describe("Local prototype API", () => {
     const { data } = await req("/state");
     expect(data.data.applicants).toEqual([]);
     expect(data.data.registry).toEqual([]);
-    expect(data.data.opportunities).toHaveLength(12);
+    expect(data.data.opportunities).toHaveLength(21);
   });
   it("rejects weak passwords and the old universal OTP", async () => {
     expect(
@@ -148,11 +148,19 @@ describe("Local prototype API", () => {
     companyCookie = company.res.headers.get("set-cookie")!.split(";")[0];
     const profiles = (await req("/state", undefined, companyCookie)).data.data
       .applicants;
-    expect(profiles).toHaveLength(1);
-    expect(profiles[0].id).toBe(applicantId);
-    expect(profiles[0].email).toBe("");
-    expect(profiles[0].phone).toBe("");
-    expect(profiles[0].progress).toEqual([]);
+    expect(profiles.filter((p: { sample?: boolean }) => p.sample)).toHaveLength(
+      36,
+    );
+    const realProfiles = profiles.filter(
+      (p: { sample?: boolean }) => !p.sample,
+    );
+    expect(realProfiles).toHaveLength(1);
+    expect(realProfiles[0].id).toBe(applicantId);
+    for (const profile of profiles) {
+      expect(profile.email).toBe("");
+      expect(profile.phone).toBe("");
+      expect(profile.progress).toEqual([]);
+    }
   });
   it("blocks unauthorized writes, reset and cross-origin mutations", async () => {
     expect((await req("/actions", {}, "")).res.status).toBe(401);

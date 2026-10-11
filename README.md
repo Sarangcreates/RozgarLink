@@ -135,3 +135,23 @@ Tests cover gates versus ranking, exact points, boundaries, aliases, preference 
 Your latest request for a backend and a free database takes precedence over the earlier frontend-only restriction. The original AGENTS.md remains unchanged; IMPLEMENTATION.md records the override. SQLite replaces a hosted free-tier database so there is no account, quota, or payment requirement. No real users or opportunities are supported in this demo. The local course catalogue contains learning content and simulated completion; it does not embed a third-party course platform. Readiness estimates use one hour of learning per day and are not promises of employment. The full current app is delivered as requested; future changes can return to your one-step-at-a-time workflow.
 
 Results are decision support. Criteria used are those stated by each opportunity.
+
+# Sample marketplace
+
+The local seed includes illustrative Google, Netflix, Amazon, NVIDIA, GoDaddy,
+Persistent, Facebook, OpenAI and Tesla scenarios. Brand names are used for demo
+context only: these are not affiliated companies, real vacancies or official
+hiring requirements. Each role has two compulsory skills, a Bachelor's minimum,
+a location rule, an experience rule, four weighted skills totalling 100 points,
+and raw Tier 1 / Tier 2 cut-offs of 80 / 50.
+
+Each scenario includes four fictional, discoverable job seekers: three covering
+Tier 1, Tier 2 and Tier 3, and one with strong skills who fails the qualification
+gate. Sample profiles have no login accounts. Company Overview includes a shared
+profile search by name, skill, location or qualification. Applicants can select
+these companies and goals in My profile and enter their own qualifications.
+
+The first startup after this update appends missing sample records to existing
+SQLite data once, preserving accounts, sessions and edited profiles. It never
+resets the database. Deploy the updated code to load these records on the hosted
+backend; local and hosted databases remain separate.

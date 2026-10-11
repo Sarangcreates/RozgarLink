@@ -3,6 +3,12 @@ import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { createSeed } from "../src/data/seed";
 import type { DataSet } from "../src/engine/types";
+import {
+  sampleApplicants,
+  sampleCompanies,
+  sampleOpportunities,
+  sampleCourses,
+} from "../src/data/sample-marketplace";
 export function openDatabase(path: string) {
   if (path !== ":memory:") mkdirSync(dirname(path), { recursive: true });
   const db = new DatabaseSync(path);
@@ -59,5 +65,45 @@ export function openDatabase(path: string) {
   }
   if (!db.prepare("SELECT value FROM metadata WHERE key='revision'").get())
     save(createSeed());
+  if (
+    !db
+      .prepare("SELECT value FROM metadata WHERE key='sample_marketplace_v1'")
+      .get()
+  ) {
+    db.exec("SAVEPOINT add_sample_marketplace");
+    try {
+      const data = read();
+      const additions = {
+        applicants: sampleApplicants,
+        companies: sampleCompanies,
+        opportunities: sampleOpportunities,
+        courses: sampleCourses,
+      };
+      let changed = false;
+      for (const kind of Object.keys(additions) as (keyof typeof additions)[]) {
+        const existing = new Set(data[kind].map((item) => item.id));
+        for (const item of additions[kind]) {
+          if (!existing.has(item.id)) {
+            // All additions belong to the matching entity collection.
+            (data[kind] as { id: string }[]).push(structuredClone(item));
+            changed = true;
+          }
+        }
+      }
+      if (changed) {
+        data.revision += 1;
+        save(data);
+      }
+      db.prepare(
+        "INSERT INTO metadata VALUES ('sample_marketplace_v1',1)",
+      ).run();
+      db.exec("RELEASE add_sample_marketplace");
+    } catch (error) {
+      db.exec(
+        "ROLLBACK TO add_sample_marketplace; RELEASE add_sample_marketplace",
+      );
+      throw error;
+    }
+  }
   return { db, read, save };
 }
