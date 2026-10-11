@@ -1,6 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Icon feedback for pointer and keyboard interactions. */
+button svg.lucide,
+a svg.lucide {
+  transform-origin: center;
+  transform-box: fill-box;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+.sidebar nav > a.active > svg.lucide {
+  transform: translateY(-2px) scale(1.12);
+  filter: drop-shadow(0 3px 3px #147e7638);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  button:not(:disabled):hover svg.lucide,
+  a:hover svg.lucide {
+    transform: translateY(-2px) scale(1.12);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sidebar nav > a.active > svg.lucide {
+    transform: none;
+  }
+}
 :root {
   font-family:
     Inter,
