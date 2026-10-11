@@ -115,7 +115,7 @@ export default function Profile() {
   }
   const registry = data.registry.find((r) => r.applicantName === a.name);
   return (
-    <>
+    <div className="profile-page">
       <div className="panel">
         <label>
           <input
@@ -700,6 +700,6 @@ export default function Profile() {
           </form>
         </Modal>
       )}
-    </>
+    </div>
   );
 }
