@@ -65,10 +65,7 @@ export default function Landing() {
             </div>
             <div className="hero-match-card">
               <div className="hero-card-head">
-                <div
-                  className="company-logo"
-                  style={{ color: "#5968d5", background: "#eef0fd" }}
-                >
+                <div className="company-logo">
                   CB
                 </div>
                 <div>

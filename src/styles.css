@@ -411,10 +411,14 @@ textarea {
   isolation: isolate;
 }
 .hero-match-card {
-  background: white;
-  border: 1px solid #e0e9e7;
+  background: linear-gradient(145deg, #183d3b, #102725);
+  color: #ecf7f5;
+  border: 1px solid #38625d;
   border-radius: 16px;
-  box-shadow: 0 25px 60px #21433e16;
+  box-shadow:
+    0 28px 65px #10272552,
+    0 10px 22px #10272538,
+    inset 0 1px 0 #ffffff12;
   width: 360px;
   padding: 24px;
   transform: rotate(-3deg);
@@ -425,7 +429,7 @@ textarea {
   align-items: center;
 }
 .hero-card-head small {
-  color: #87949a;
+  color: #b4cfca;
   font-size: 9px;
 }
 .hero-card-head h3 {
@@ -435,17 +439,22 @@ textarea {
 }
 .hero-card-head > svg {
   margin-left: auto;
-  color: #148477;
+  color: #79ddcb;
+}
+.hero-match-card .company-logo {
+  color: #c3c9ff;
+  background: #303f62;
+  border: 1px solid #6774ad66;
 }
 .hero-gate {
   display: flex;
   gap: 7px;
   align-items: center;
-  background: #f0f8f3;
-  border: 1px solid #dcece2;
+  background: #204b43;
+  border: 1px solid #467d6b;
   border-radius: 6px;
   padding: 10px;
-  color: #38805c;
+  color: #a7e6c8;
   font-size: 10px;
   margin: 22px 0;
 }
@@ -462,7 +471,7 @@ textarea {
 .hero-skill-list strong {
   font-size: 9px;
   font-weight: 500;
-  color: #7d8e94;
+  color: #b4cfca;
 }
 .mini-track {
   flex: 1;
@@ -476,14 +485,20 @@ textarea {
   height: 100%;
   background: #8baba6;
 }
+.hero-match-card .mini-track {
+  background: #355651;
+}
+.hero-match-card .mini-track > span {
+  background: linear-gradient(90deg, #69b9ad, #8be1d1);
+}
 .hero-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #edf1f3;
+  border-top: 1px solid #ffffff22;
   padding-top: 17px;
   margin-top: 14px;
-  color: #718980;
+  color: #bdd7d1;
   font-size: 9px;
 }
 .floating-label {
