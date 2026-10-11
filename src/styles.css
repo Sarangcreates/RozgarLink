@@ -269,10 +269,9 @@ textarea {
   inset: 0 0 0 52%;
   overflow: hidden;
   color: var(--teal);
-  opacity: 0.2;
+  opacity: 0.38;
   pointer-events: none;
   z-index: -1;
-  mask-image: linear-gradient(to right, transparent, black 24%);
 }
 .hero-mandala-backdrop > svg {
   position: absolute;
@@ -281,7 +280,7 @@ textarea {
   right: -22%;
   top: 50%;
   transform: translateY(-50%) scale(1.1);
-  stroke-width: 1.1;
+  stroke-width: 1.4;
 }
 .hero-mandala-backdrop path,
 .hero-mandala-backdrop circle {
@@ -290,8 +289,7 @@ textarea {
 @media (max-width: 650px) {
   .hero-mandala-backdrop {
     inset: 55% 0 0;
-    opacity: 0.14;
-    mask-image: linear-gradient(to bottom, transparent, black 20%);
+    opacity: 0.28;
   }
   .hero-mandala-backdrop > svg {
     width: 150%;
@@ -362,21 +360,6 @@ textarea {
   align-items: center;
   justify-content: center;
   isolation: isolate;
-}
-.visual-orbit {
-  position: absolute;
-  border: 1px solid #cce2dc;
-  border-radius: 50%;
-  z-index: -1;
-  transform: rotate(-28deg);
-}
-.orbit-one {
-  width: 430px;
-  height: 300px;
-}
-.orbit-two {
-  width: 340px;
-  height: 450px;
 }
 .hero-match-card {
   background: white;
@@ -1936,12 +1919,6 @@ td small {
   .hero-match-card {
     width: 285px;
     padding: 20px;
-  }
-  .orbit-one {
-    width: 310px;
-  }
-  .orbit-two {
-    width: 260px;
   }
   .floating-label {
     font-size: 8px;

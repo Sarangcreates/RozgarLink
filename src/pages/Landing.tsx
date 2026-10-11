@@ -65,8 +65,6 @@ export default function Landing() {
             </div>
           </div>
           <div className="hero-visual">
-            <div className="visual-orbit orbit-one" />
-            <div className="visual-orbit orbit-two" />
             <div className="floating-label">
               <Link2 size={16} />A match you can understand
             </div>
