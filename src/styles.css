@@ -287,15 +287,17 @@ textarea {
   line-height: 1.12;
   margin: 25px 0;
   text-shadow:
-    0 5px 8px #172c3b38,
-    0 14px 28px #172c3b2b;
+    0 6px 8px #172c3b66,
+    0 16px 24px #172c3b4d,
+    0 24px 40px #172c3b33;
 }
 .hero-copy h1 em {
   font-style: normal;
   color: #147e76;
   text-shadow:
-    0 5px 8px #147e7638,
-    0 14px 28px #147e762b;
+    0 6px 8px #147e7666,
+    0 16px 24px #147e764d,
+    0 24px 40px #147e7633;
 }
 .hero-copy > p {
   font-size: 14px;
