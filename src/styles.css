@@ -281,15 +281,29 @@ textarea {
   background: #147e76;
 }
 .hero-copy h1 {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI Variable",
+    "Segoe UI",
+    system-ui,
+    sans-serif;
   font-size: clamp(42px, 4.8vw, 67px);
-  font-weight: 750;
+  font-weight: 800;
   letter-spacing: -3px;
   line-height: 1.12;
   margin: 25px 0;
+  text-shadow:
+    0 4px 3px #172c3b26,
+    0 12px 20px #172c3b1f;
 }
 .hero-copy h1 em {
   font-style: normal;
   color: #147e76;
+  text-shadow:
+    0 4px 3px #147e7626,
+    0 12px 20px #147e761f;
 }
 .hero-copy > p {
   font-size: 14px;
