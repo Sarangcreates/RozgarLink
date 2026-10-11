@@ -317,7 +317,7 @@ textarea {
   inset: 0 40% 0 0;
   overflow: hidden;
   color: var(--teal);
-  opacity: 0.22;
+  opacity: 0.38;
   pointer-events: none;
   z-index: -1;
   mask-image: linear-gradient(to right, black 15%, #0009 50%, transparent 100%);
@@ -329,7 +329,7 @@ textarea {
   left: -24%;
   top: 50%;
   transform: translateY(-50%);
-  stroke-width: 1.4;
+  stroke-width: 1.7;
 }
 .hero-circle-backdrop circle {
   vector-effect: non-scaling-stroke;
@@ -360,7 +360,7 @@ textarea {
 @media (max-width: 650px) {
   .hero-circle-backdrop {
     inset: 0 0 42%;
-    opacity: 0.16;
+    opacity: 0.28;
   }
   .hero-circle-backdrop > svg {
     width: 155%;
