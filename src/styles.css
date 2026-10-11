@@ -618,6 +618,10 @@ textarea {
   background: #f8faf9;
   border: 1px solid #e6eeea;
   border-radius: 12px;
+  box-shadow:
+    0 6px 12px #173f3d1f,
+    0 18px 32px #173f3d26,
+    0 32px 56px #173f3d1a;
   padding: 27px;
   position: relative;
 }
