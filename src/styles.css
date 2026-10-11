@@ -1112,6 +1112,9 @@ footer small {
   border-color: var(--stat-border);
   box-shadow: var(--stat-shadow);
 }
+.profile-page > .panel + .page-title {
+  margin-top: 22px;
+}
 .panel h3 {
   font-size: 13px;
   font-weight: 700;
