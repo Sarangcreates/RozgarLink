@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
 import { useStore } from "../store/useStore";
 import { Logo, Footer } from "../components/Layout";
 import MandalaBackdrop from "../components/MandalaBackdrop";
+import CirclePatternBackdrop from "../components/CirclePatternBackdrop";
 export default function Login() {
   const { role: param } = useParams(),
     role = param === "company" ? "company" : "applicant";
@@ -50,6 +51,7 @@ export default function Login() {
         </Link>
       </header>
       <main className="login-main">
+        <CirclePatternBackdrop />
         <MandalaBackdrop />
         <div className="login-intro">
           <span className="hero-pill">
