@@ -38,6 +38,78 @@ describe("App origin handling", () => {
         true,
       );
   });
+  it("accepts the Render-assigned HTTPS URL and the local port used by Render", () => {
+    vi.stubEnv("RENDER_EXTERNAL_URL", "https://rozgar-test.onrender.com");
+    const origins = appOrigins();
+    expect(
+      allowedAppOrigin(
+        "https://rozgar-test.onrender.com",
+        "http://localhost:10000",
+        origins,
+      ),
+    ).toBe(true);
+    expect(
+      allowedAppOrigin(
+        "http://localhost:10000",
+        "http://127.0.0.1:3001",
+        origins,
+      ),
+    ).toBe(true);
+    expect(
+      allowedAppOrigin(
+        "https://unrelated.onrender.com",
+        "http://localhost:10000",
+        origins,
+      ),
+    ).toBe(false);
+  });
+  it("allows both portals behind Render HTTPS forwarding without enabling unrelated Render sites", async () => {
+    const origin = "https://rozgar-test.onrender.com";
+    vi.stubEnv("RENDER_EXTERNAL_URL", origin);
+    vi.stubEnv("RENDER", "true");
+    const { app, repo } = createApp(":memory:");
+    const server = app.listen(0, "127.0.0.1");
+    await new Promise<void>((resolve) => server.on("listening", resolve));
+    try {
+      const port = (server.address() as { port: number }).port;
+      const send = (path: string, website: string, body: unknown) =>
+        fetch(`http://127.0.0.1:${port}/api${path}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Origin: website,
+            "X-Forwarded-Proto": "https",
+          },
+          body: JSON.stringify(body),
+        });
+      for (const role of ["applicant", "company"]) {
+        const email = `${role}@render-test.example`;
+        const register = await send("/auth/register", origin, {
+          role,
+          name: "Render Portal Test",
+          email,
+          password: "render-test-password",
+        });
+        expect(register.status).toBe(200);
+        expect(register.headers.get("set-cookie")).toContain("Secure");
+        const credentials = {
+          role,
+          identifier: email,
+          password: "render-test-password",
+        };
+        expect((await send("/auth/login", origin, credentials)).status).toBe(
+          200,
+        );
+        expect(
+          (await send("/auth/login", "https://other.onrender.com", credentials))
+            .status,
+        ).toBe(403);
+      }
+    } finally {
+      await new Promise<void>((resolve) => server.close(() => resolve()));
+      repo.db.close();
+    }
+  });
   it("accepts a direct same-origin app on the server's assigned port", () => {
     expect(
       allowedAppOrigin(

@@ -10,6 +10,10 @@ Copy `.env.example` to `.env`, add a replacement key as `GEMINI_API_KEY`, then r
 
 ### Hosting setup
 
+For a Render **Web Service** with the Node runtime, use Node 24, build command `npm ci --include=dev && npm run build`, and start command `npm start`. The server binds to `0.0.0.0` automatically on Render and uses Render's `PORT`. The Render-provided `RENDER_EXTERNAL_URL` is automatically trusted for sign-in and printed as the public link. Open that `https://...onrender.com` URL from the dashboard; `localhost:10000` is a local-computer address. Additional separate frontend domains still belong in `APP_ORIGINS`. A static-site-only deployment cannot run the backend.
+
+To preserve accounts on Render, attach persistent storage and set `DB_PATH` to a SQLite file within its mount path (for example `/opt/render/project/src/storage/rozgarlink.sqlite` when that is the disk mount path). Render persistent disks require a paid service; without a persistent disk, SQLite files can be lost on restart or redeploy. Do not switch the database path if you need to preserve an existing database without first migrating it. No paid resources have been created by this project update. The local alternative is `npm run dev` and http://localhost:5173.
+
 The canonical `https://rozgar-link.vercel.app` frontend and local ports 5173, 3001, and 4173 are trusted by default. Direct same-origin requests to the server-hosted app are also accepted. For additional production, custom, or preview domains, set `APP_ORIGINS` to a comma-separated list of their full origins (for example `https://your-custom-domain.example,https://your-preview.example`), then restart the backend. `APP_ORIGIN` remains supported. A changed environment setting takes effect when the backend restarts. Keep unrelated domains out of the allowlist.
 
 The Vercel frontend needs a running backend; a static build cannot provide sign-in or SQLite persistence. The `vercel.json` API rewrite and `api/proxy.ts` function forward same-origin API requests to the server specified by the Vercel environment variable `BACKEND_URL`. They preserve login cookies and never cache account responses.

@@ -19,10 +19,13 @@ if (!process.argv.includes("--dev")) {
   app.get("/{*path}", (_req, res) => res.sendFile(resolve(dist, "index.html")));
 }
 const port = Number(process.env.PORT || 3001);
-const server = app.listen(port, process.env.HOST || "127.0.0.1", () =>
-  console.log(
-    `RozgarLink API ready at http://localhost:${port}${process.argv.includes("--dev") ? " · open http://localhost:5173" : ""}`,
-  ),
+const server = app.listen(
+  port,
+  process.env.HOST || (process.env.RENDER === "true" ? "0.0.0.0" : "127.0.0.1"),
+  () =>
+    console.log(
+      `RozgarLink API ready at ${process.env.RENDER_EXTERNAL_URL || `http://localhost:${port}`}${process.argv.includes("--dev") ? " · open http://localhost:5173" : ""}`,
+    ),
 );
 for (const s of ["SIGINT", "SIGTERM"])
   process.on(s, () =>

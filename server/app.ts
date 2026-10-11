@@ -36,12 +36,10 @@ export function createApp(path: string) {
             origins,
           )
         )
-          return res
-            .status(403)
-            .json({
-              error:
-                "This website address has not been enabled on the backend. Add it to APP_ORIGINS and restart the backend.",
-            });
+          return res.status(403).json({
+            error:
+              "This website address has not been enabled on the backend. Add it to APP_ORIGINS and restart the backend.",
+          });
       }
     }
     next();
@@ -111,7 +109,8 @@ export function createApp(path: string) {
     res.cookie("rozgar_session", token, {
       httpOnly: true,
       sameSite: "strict",
-      secure: process.env.COOKIE_SECURE === "true",
+      secure:
+        process.env.COOKIE_SECURE === "true" || process.env.RENDER === "true",
       path: "/",
       maxAge: 86400000,
     });
