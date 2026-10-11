@@ -1,0 +1,282 @@
+[
+  {
+    "id": "course-1",
+    "title": "Excel Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Excel"],
+    "level": 3,
+    "duration": 2,
+    "link": "#local-course-1",
+    "content": "Local learning unit: practise Excel, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-2",
+    "title": "SQL Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["SQL"],
+    "level": 3,
+    "duration": 3,
+    "link": "#local-course-2",
+    "content": "Local learning unit: practise SQL, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-3",
+    "title": "Data Visualization Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Data Visualization"],
+    "level": 3,
+    "duration": 4,
+    "link": "#local-course-3",
+    "content": "Local learning unit: practise Data Visualization, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-4",
+    "title": "React Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["React"],
+    "level": 3,
+    "duration": 5,
+    "link": "#local-course-4",
+    "content": "Local learning unit: practise React, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-5",
+    "title": "JavaScript Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["JavaScript"],
+    "level": 3,
+    "duration": 2,
+    "link": "#local-course-5",
+    "content": "Local learning unit: practise JavaScript, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-6",
+    "title": "Node.js Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Node.js"],
+    "level": 3,
+    "duration": 3,
+    "link": "#local-course-6",
+    "content": "Local learning unit: practise Node.js, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-7",
+    "title": "Git Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Git"],
+    "level": 3,
+    "duration": 4,
+    "link": "#local-course-7",
+    "content": "Local learning unit: practise Git, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-8",
+    "title": "Docker Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Docker"],
+    "level": 3,
+    "duration": 5,
+    "link": "#local-course-8",
+    "content": "Local learning unit: practise Docker, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-9",
+    "title": "Python Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Python"],
+    "level": 3,
+    "duration": 2,
+    "link": "#local-course-9",
+    "content": "Local learning unit: practise Python, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-10",
+    "title": "Statistics Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Statistics"],
+    "level": 3,
+    "duration": 3,
+    "link": "#local-course-10",
+    "content": "Local learning unit: practise Statistics, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-11",
+    "title": "Communication Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Communication"],
+    "level": 3,
+    "duration": 4,
+    "link": "#local-course-11",
+    "content": "Local learning unit: practise Communication, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-12",
+    "title": "Basic Computer Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Basic Computer"],
+    "level": 3,
+    "duration": 5,
+    "link": "#local-course-12",
+    "content": "Local learning unit: practise Basic Computer, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-13",
+    "title": "Safety Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Safety"],
+    "level": 3,
+    "duration": 2,
+    "link": "#local-course-13",
+    "content": "Local learning unit: practise Safety, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-14",
+    "title": "Welding Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Welding"],
+    "level": 3,
+    "duration": 3,
+    "link": "#local-course-14",
+    "content": "Local learning unit: practise Welding, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-15",
+    "title": "Machine Operation Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Machine Operation"],
+    "level": 3,
+    "duration": 4,
+    "link": "#local-course-15",
+    "content": "Local learning unit: practise Machine Operation, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-16",
+    "title": "CAD Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["CAD"],
+    "level": 3,
+    "duration": 5,
+    "link": "#local-course-16",
+    "content": "Local learning unit: practise CAD, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-17",
+    "title": "Quality Control Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Quality Control"],
+    "level": 3,
+    "duration": 2,
+    "link": "#local-course-17",
+    "content": "Local learning unit: practise Quality Control, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-18",
+    "title": "First Aid Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["First Aid"],
+    "level": 3,
+    "duration": 3,
+    "link": "#local-course-18",
+    "content": "Local learning unit: practise First Aid, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-19",
+    "title": "Medical Records Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Medical Records"],
+    "level": 3,
+    "duration": 4,
+    "link": "#local-course-19",
+    "content": "Local learning unit: practise Medical Records, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-20",
+    "title": "Problem Solving Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Problem Solving"],
+    "level": 3,
+    "duration": 5,
+    "link": "#local-course-20",
+    "content": "Local learning unit: practise Problem Solving, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-21",
+    "title": "Typing Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Typing"],
+    "level": 3,
+    "duration": 2,
+    "link": "#local-course-21",
+    "content": "Local learning unit: practise Typing, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-22",
+    "title": "Customer Service Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Customer Service"],
+    "level": 3,
+    "duration": 3,
+    "link": "#local-course-22",
+    "content": "Local learning unit: practise Customer Service, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-23",
+    "title": "Spreadsheet Formulas Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Spreadsheet Formulas"],
+    "level": 3,
+    "duration": 4,
+    "link": "#local-course-23",
+    "content": "Local learning unit: practise Spreadsheet Formulas, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "course-24",
+    "title": "Report Writing Essentials",
+    "provider": "NayiDisha Demo Academy",
+    "skillsTaught": ["Report Writing"],
+    "level": 3,
+    "duration": 5,
+    "link": "#local-course-24",
+    "content": "Local learning unit: practise Report Writing, complete the worked example, and review the supplied checklist. Marking this unit complete is simulated course evidence for this fictional hackathon demo."
+  },
+  {
+    "id": "advanced-1",
+    "title": "Excel Applied Practice",
+    "provider": "Civic Learning Studio",
+    "skillsTaught": ["Excel"],
+    "level": 5,
+    "duration": 8,
+    "link": "#local-advanced-1",
+    "content": "Advanced local Excel practice. Apply the skill to a worked scenario and explain your solution. Course completion is simulated."
+  },
+  {
+    "id": "advanced-2",
+    "title": "React Applied Practice",
+    "provider": "Civic Learning Studio",
+    "skillsTaught": ["React"],
+    "level": 5,
+    "duration": 8,
+    "link": "#local-advanced-2",
+    "content": "Advanced local React practice. Apply the skill to a worked scenario and explain your solution. Course completion is simulated."
+  },
+  {
+    "id": "advanced-3",
+    "title": "SQL Applied Practice",
+    "provider": "Civic Learning Studio",
+    "skillsTaught": ["SQL"],
+    "level": 5,
+    "duration": 8,
+    "link": "#local-advanced-3",
+    "content": "Advanced local SQL practice. Apply the skill to a worked scenario and explain your solution. Course completion is simulated."
+  },
+  {
+    "id": "advanced-4",
+    "title": "Python Applied Practice",
+    "provider": "Civic Learning Studio",
+    "skillsTaught": ["Python"],
+    "level": 5,
+    "duration": 8,
+    "link": "#local-advanced-4",
+    "content": "Advanced local Python practice. Apply the skill to a worked scenario and explain your solution. Course completion is simulated."
+  }
+]

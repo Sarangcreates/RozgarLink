@@ -1,0 +1,202 @@
+# ROLE
+You are a senior full-stack engineer and UI/UX designer. Build "RozgarLink", a working,
+demo-ready Skills-to-Opportunity Matching web app for a 12-hour hackathon (government/GovTech
+domain). Judges will test it live, so it must run locally with one command, with no paid APIs.
+
+# PRODUCT SUMMARY
+Two portals in one app:
+1. COMPANY PORTAL: companies post opportunities, define compulsory skills (eligibility) and
+   point-weighted skills (ranking), and set tier cut-offs.
+2. APPLICANT PORTAL: applicants build a profile, add skills and certificates, see eligible
+   jobs, their Tier, skill gaps, learning paths, progress, and daily check-ins.
+
+# NON-NEGOTIABLE RULES (from the problem statement - the app will be judged on these)
+1. Eligibility is separate from ranking. A compulsory skill/qualification/location rule that a
+   candidate fails makes the opportunity "Not Eligible", however good the other skills are.
+   Only eligible opportunities are ranked and given a Tier.
+2. Eligibility is decided ONLY by explicit rules stated by the opportunity (deterministic code).
+   AI/NLP may extract skills, judge skill similarity (e.g. "ReactJS" = "React.js" = "React")
+   and inform RANKING only. It must never decide eligibility.
+3. Every result is explained in plain language: why an eligible job ranks where it does (points
+   breakdown) and exactly which condition a rejected candidate fails.
+4. Skill gaps and learning pathways come from a local, team-supplied JSON course catalogue.
+   Never call a live course provider.
+5. Any change to the candidate's skills, qualifications, certificates or location must instantly
+   recompute eligibility, points, tiers and rankings, with a visible "what changed" highlight.
+6. Show a disclaimer: "Results are decision support. Criteria used are those stated by each
+   opportunity."
+7. Use fictional data only. Provide a local fallback so the app works fully offline; any
+   external AI is optional and the core demo must not depend on it.
+
+# TECH STACK (keep it fast to build)
+- Frontend: React + Vite + Tailwind CSS (or Next.js if you prefer), responsive, mobile-first.
+- State/storage: localStorage or a small SQLite/JSON backend (Express/FastAPI). Seed with demo data.
+- Matching engine: pure, unit-testable functions in a separate module (no UI logic inside).
+- Skill matching fallback: a local synonym dictionary + normalization (lowercase, strip
+  punctuation) + fuzzy string match (Levenshtein/Jaro-Winkler). Optional embeddings/LLM can be
+  added behind a toggle with this fallback as default.
+
+# DESIGN REQUIREMENTS
+- Modern, clean, trustworthy GovTech look: card-based layout, rounded corners, soft shadows,
+  a calm primary colour (indigo/teal), clear typography, light and dark mode.
+- Colour-coded tiers: Tier 1 = green/gold, Tier 2 = blue, Tier 3 = orange. Not eligible = grey/red.
+- Sticky top navbar with a role switch (Company / Applicant), clear icons, tooltips, empty
+  states, loading states, and accessible contrast. Easy for first-time users: max 3 clicks to
+  any main feature, plus a short onboarding stepper.
+- Optional language toggle (English / Hindi / Marathi) for key labels.
+
+# BUILD STEPS (follow in order; finish each step before moving to the next)
+
+## STEP 1 - Project setup and data model
+Create the project structure and these entities:
+- Applicant: id, name, email, phone, status (student/graduate/working/job-seeker), degree,
+  college, year, location, hobbies[], preferences {commute, minPay, jobType}, goalCompany,
+  goalRole, skills[{name, level 1-5}], certificates[], interestedJobIds[], progress
+- Opportunity: id, companyId, title, location, description, workInvolved,
+  eligibility {compulsorySkills[], minQualification, allowedLocations[], otherCriteria[]},
+  scoredSkills[{name, points}], tierCutoffs {tier1Min, tier2Min}, salary, commute info
+- Company: id, name, sector, about
+- Review: id, jobId, rating 1-5, title, text, pros, cons, role, duration, date (fictional)
+- Certificate: id, applicantId, title, type (course/project/degree), issuer, certId, issueDate,
+  status (Verified / Unverified / Invalid), skillsClaimed[]
+- CourseCatalogue (local JSON): id, title, provider (fictional), skillsTaught[], level,
+  duration, link (placeholder)
+Seed at least: 6 companies, 12 opportunities across IT / government / manufacturing /
+healthcare, 8 fictional applicants of varied profiles, 20+ catalogue courses, 15+ reviews.
+
+## STEP 2 - Matching engine (core, build this first and test it)
+Implement as pure functions with unit tests:
+1. normalizeSkill(text) and skillSimilarity(a, b) -> 0..1, using synonyms + fuzzy matching.
+   A match counts when similarity >= a configurable threshold (default 0.8); show the matched
+   alias to the user ("Your 'ReactJS' matched required 'React' - 92%").
+2. checkEligibility(applicant, opportunity) -> { eligible: boolean, passed[], failed[] }
+   - Fails if ANY compulsory skill is missing, the minimum qualification is not met, or the
+     location rule is not met. Each failure includes a plain-language reason, e.g.
+     "Missing compulsory skill: SQL", "Requires B.E./B.Tech; you have Diploma".
+   - Uses deterministic rules only. No AI input.
+3. scoreApplicant(applicant, opportunity) -> only for eligible candidates.
+   Points = sum over scored skills of (company points x match strength x level factor).
+   Return a full breakdown per skill.
+4. assignTier(score, cutoffs) -> Tier 1 (>= tier1Min), Tier 2 (>= tier2Min), Tier 3 (below).
+   Tiers are PER OPPORTUNITY, and an overall applicant tier is computed from the average
+   of their best eligible matches.
+5. explain(result) -> readable sentences: why the job is ranked here, what points came from
+   where, and what would move them up a tier ("You need 12 more points for Tier 2: learn Docker
+   (+8) and Git (+5)").
+6. skillGap(applicant, opportunity) -> missing compulsory skills, missing scored skills, and
+   points to be gained.
+7. recommendPath(gaps, catalogue) -> ordered learning steps from the local catalogue, shortest
+   path first (compulsory gaps first, then highest-points skills), with total estimated duration.
+Every recompute must be triggered automatically on any profile change.
+
+## STEP 3 - Landing and authentication
+- Landing page: hero ("Find jobs that fit your skills - fairly and transparently"), two big
+  buttons: "I'm an Applicant" and "I'm a Company", a short "How it works" section (3 steps), and
+  a footer with the disclaimer.
+- Applicant login: Welcome screen with Email or Phone number login (tab switch) and OTP.
+  Use a mock OTP (display "Demo OTP: 123456") and form validation. No real SMS/email.
+- Company login: email + mock OTP.
+
+## STEP 4 - COMPANY PORTAL
+4.1 Company dashboard: list of posted opportunities, number of eligible applicants per tier,
+    and a "Post new opportunity" button.
+4.2 Opportunity creation form (multi-step), with live validation:
+    a) Basics: title, location, work involved, salary, commute info
+    b) ELIGIBILITY (compulsory, cannot be compromised): compulsory skills, minimum
+       qualification, allowed locations. Show a lock icon and the note "Candidates failing any
+       of these will NOT be shown as a match."
+    c) RANKING SKILLS (point system): add skills with points (e.g. React 20, Docker 10);
+       show the total points and a live preview.
+    d) TIER SETUP: set the Tier 1 and Tier 2 cut-offs, with a visual bar showing the point
+       ranges (Tier 1 / Tier 2 / Tier 3).
+    e) Preview: show how a sample candidate would be evaluated.
+4.3 Applicant leaderboard per opportunity: eligible candidates grouped by Tier 1 / 2 / 3 with
+    score and explanation; a separate collapsed "Not eligible" list with the exact failed
+    conditions. Filters and search.
+4.4 Reviews and feedback section on each opportunity page: average rating, rating
+    distribution bars, written experiences from previous employees/trainees, plus an "Add
+    review" form (rating, pros, cons, text) with a basic profanity check. Show "Fictional demo
+    reviews" labels.
+
+## STEP 5 - APPLICANT PORTAL: ONBOARDING
+5.1 "Tell us about yourself" page: status (student etc.), degree, college, year, hobbies
+    (tag input), location, preferences (commute, pay, job type).
+5.2 "Your goal" page: dream company/role selector (from the seeded companies), target timeline.
+5.3 SKILLS POP-UP / MODAL (very important): after the goal is chosen, open a modal showing the
+    skills required by the target company/role, split into "Compulsory" and "Points-based".
+    The applicant ticks the skills they have and sets a level (1-5). Also allow free-text
+    skill entry; run the synonym/fuzzy matcher and show "Recognised as: React" suggestions
+    which the user confirms. Show a live eligibility meter and points while they tick.
+5.4 CERTIFICATES section: add courses, projects and degrees (title, issuer, ID, date, file
+    upload placeholder, skills it supports). VERIFICATION (simulated): validate the certificate
+    ID format, check it against a local mock registry of issued certificates (match
+    ID + name + title via SHA-256 hash), and show a badge: Verified / Unverified / Invalid with
+    the reason. Add a note: "Demo verification against a simulated registry; real systems
+    would use an issuer API." Only skills backed by Verified certificates are marked
+    "verified" (extra trust badge); unverified ones still count but are labelled.
+
+## STEP 6 - APPLICANT PORTAL: MAIN FEATURES
+6.1 "Jobs for you" page: two tabs
+    - ELIGIBLE MATCHES (ranked): cards with company, role, score, tier chip, matched skills,
+      a "Why this rank?" expandable explanation, and a link to reviews.
+    - NOT ELIGIBLE: cards that show exactly which condition failed and a "Build my path" button.
+    Filters: tier, location, pay, commute; sorting by score or preference fit. Preferences
+    (commute, pay) only affect ranking order, never eligibility, and say so in the UI.
+6.2 "Where I want to go" (goal tracker): the user's target company/role with a gap analysis:
+    compulsory gaps, points gaps, and a visual roadmap (timeline) of learning steps from the
+    local catalogue, with durations and an estimated "ready by" date. Shown automatically if the
+    applicant is not eligible or is in a lower tier. Allow marking a step done.
+6.3 Interested jobs: bookmark jobs; a gap report for every bookmarked job.
+
+## STEP 7 - TIER PAGE
+A dedicated page showing the applicant's overall tier:
+- Tier 1: highest match standards, eligible for most top companies (list them).
+- Tier 2: medium; "you can do much better" with the next 2-3 actions to reach Tier 1.
+- Tier 3: beginner/new to the field; beginner-friendly jobs and starter learning path.
+Show a tier ladder graphic with the user's current position, progress to the next tier (%),
+and the points required. Include an explanation of how the tier was computed.
+
+## STEP 8 - PROGRESS AND DAILY CHECK-UP
+- Progress dashboard: overall readiness %, skills added over time (line chart), tier history,
+  course steps completed, certificates verified, and badges.
+- Level system: XP for completing a learning step, verified certificate, daily check-in, or
+  new skill. XP levels grow the profile; tier changes are ALWAYS driven by the matching
+  engine's recomputation (never by XP alone). Show tier movement as "Tier 3 -> Tier 2" with the
+  reasons and an animation.
+- Daily check-up: a short daily card (what did you learn today? mark a skill practised, log
+  minutes, a 3-question self-quiz on the target skill). Track the streak, a calendar heatmap,
+  and a gentle reminder banner if the user missed a day. Self-reported items give XP only;
+  they raise skill level only after a quiz or certificate evidence.
+- Weekly summary: auto-generated text summary of progress and next best action.
+
+## STEP 9 - Real-time updates and transparency
+- Any change to qualifications, location, skills or certificates triggers an instant
+  recompute with a toast and a diff panel ("+2 new eligible jobs, 1 moved from Tier 3 to
+  Tier 2, 1 job lost because of location change").
+- Add an "Explain/Audit" drawer showing the exact rules and numbers used for any result.
+- Add a "Demo mode" panel for judges: quickly edit the candidate's qualification or location
+  and watch the eligibility and rankings change.
+
+## STEP 10 - Quality, safety and polish
+- Input validation, error messages and empty states everywhere.
+- Unit tests for the engine: eligibility fails despite perfect skill fit, synonym matching,
+  tier boundaries, preference changes affecting only the rank order, and recompute on edit.
+- Show a small evaluation table: a labelled set of skill pairs (match / no-match) with
+  precision/recall of the synonym matcher, reporting misses honestly.
+- Accessibility (labels, keyboard navigation), performance and responsiveness checks.
+- README with setup (one command), demo script, seeded login credentials, architecture
+  diagram, limitations (simulated OTP/verification, rule-based fallback) and the points formula.
+
+# DEMO SCENARIOS TO SEED (must work)
+1. Applicant with perfect skills but missing a compulsory qualification -> shown as Not Eligible
+   with the exact reason, and NOT ranked.
+2. Applicant using different wording ("ReactJS", "Node") -> correctly recognised and ranked.
+3. Applicant changes location -> eligibility and rank update instantly, with a diff.
+4. Applicant in Tier 3 completes two catalogue courses -> moves to Tier 2 with explanation.
+5. Company changes a Tier cut-off -> the applicant leaderboard re-tiers immediately.
+
+# DELIVERABLE FORMAT
+Work step by step: after each step, summarise what was built, list files changed, and tell me
+how to run and test it before continuing. Prioritise a working end-to-end flow (Steps 1-7)
+before polish (Steps 8-10). Ask me only if something is truly blocking; otherwise state your
+assumption and proceed.

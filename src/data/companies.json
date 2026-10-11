@@ -1,0 +1,56 @@
+[
+  {
+    "id": "c1",
+    "name": "CivicByte Labs",
+    "sector": "IT",
+    "about": "Digital tools for accessible public services.",
+    "email": "c1@demo.test",
+    "initials": "CB",
+    "color": "#5664db"
+  },
+  {
+    "id": "c2",
+    "name": "JanSetu Services",
+    "sector": "Government",
+    "about": "Fictional citizen-service and administrative support team.",
+    "email": "c2@demo.test",
+    "initials": "JS",
+    "color": "#13877c"
+  },
+  {
+    "id": "c3",
+    "name": "ForgeLeaf Works",
+    "sector": "Manufacturing",
+    "about": "Modern workshop training and precision manufacturing.",
+    "email": "c3@demo.test",
+    "initials": "FW",
+    "color": "#c58137"
+  },
+  {
+    "id": "c4",
+    "name": "CareBridge Collective",
+    "sector": "Healthcare",
+    "about": "Community-health operations and patient support.",
+    "email": "c4@demo.test",
+    "initials": "CC",
+    "color": "#ad649d"
+  },
+  {
+    "id": "c5",
+    "name": "Aster Analytics",
+    "sector": "IT",
+    "about": "Practical data analysis for public programmes.",
+    "email": "c5@demo.test",
+    "initials": "AA",
+    "color": "#428da7"
+  },
+  {
+    "id": "c6",
+    "name": "NayiDisha Skills",
+    "sector": "Training",
+    "about": "Hands-on apprenticeships and local career pathways.",
+    "email": "c6@demo.test",
+    "initials": "NS",
+    "color": "#718b43"
+  }
+]

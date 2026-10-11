@@ -1,0 +1,16 @@
+[
+  {
+    "certId": "RL-2026-001",
+    "applicantName": "Aarav Joshi",
+    "title": "Frontend Foundations",
+    "issuer": "Civic Learning Studio",
+    "skillsClaimed": ["React"]
+  },
+  {
+    "certId": "RL-2026-002",
+    "applicantName": "Nila Patil",
+    "title": "Reporting Foundations",
+    "issuer": "NayiDisha Demo Academy",
+    "skillsClaimed": ["Excel"]
+  }
+]

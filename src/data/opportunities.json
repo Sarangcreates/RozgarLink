@@ -1,0 +1,516 @@
+[
+  {
+    "id": "j1",
+    "companyId": "c1",
+    "title": "Frontend Developer",
+    "location": "Pune",
+    "description": "Join our fictional frontend developer team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Build, test, and document dependable digital tools.",
+    "jobType": "Full-time",
+    "salary": 42000,
+    "commuteMinutes": 30,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "React",
+          "threshold": 0.8
+        },
+        {
+          "name": "JavaScript",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "Bachelor's",
+      "allowedLocations": ["Pune", "Mumbai"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "React",
+        "points": 35
+      },
+      {
+        "name": "JavaScript",
+        "points": 25
+      },
+      {
+        "name": "Git",
+        "points": 20
+      },
+      {
+        "name": "Docker",
+        "points": 20
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 80,
+      "tier2Min": 50
+    }
+  },
+  {
+    "id": "j2",
+    "companyId": "c1",
+    "title": "Node.js Developer",
+    "location": "Mumbai",
+    "description": "Join our fictional node.js developer team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Build, test, and document dependable digital tools.",
+    "jobType": "Full-time",
+    "salary": 45000,
+    "commuteMinutes": 50,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Node.js",
+          "threshold": 0.8
+        },
+        {
+          "name": "SQL",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "Bachelor's",
+      "allowedLocations": ["Mumbai"],
+      "otherCriteria": [
+        {
+          "field": "experienceYears",
+          "operator": ">=",
+          "value": 1
+        }
+      ]
+    },
+    "scoredSkills": [
+      {
+        "name": "Node.js",
+        "points": 40
+      },
+      {
+        "name": "SQL",
+        "points": 30
+      },
+      {
+        "name": "Git",
+        "points": 20
+      },
+      {
+        "name": "Docker",
+        "points": 10
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 75,
+      "tier2Min": 45
+    }
+  },
+  {
+    "id": "j3",
+    "companyId": "c2",
+    "title": "Data Entry & Reporting Trainee",
+    "location": "Pune",
+    "description": "Join our fictional data entry & reporting trainee team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Prepare reports, support service requests, and maintain clear records.",
+    "jobType": "Traineeship",
+    "salary": 18000,
+    "commuteMinutes": 20,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Excel",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "12th",
+      "allowedLocations": ["Any"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Excel",
+        "points": 30
+      },
+      {
+        "name": "SQL",
+        "points": 40
+      },
+      {
+        "name": "Data Visualization",
+        "points": 30
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 75,
+      "tier2Min": 45
+    }
+  },
+  {
+    "id": "j4",
+    "companyId": "c2",
+    "title": "Citizen Service Associate",
+    "location": "Delhi",
+    "description": "Join our fictional citizen service associate team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Prepare reports, support service requests, and maintain clear records.",
+    "jobType": "Full-time",
+    "salary": 22000,
+    "commuteMinutes": 40,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Communication",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "12th",
+      "allowedLocations": ["Delhi"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Communication",
+        "points": 50
+      },
+      {
+        "name": "Basic Computer",
+        "points": 30
+      },
+      {
+        "name": "Excel",
+        "points": 20
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 75,
+      "tier2Min": 45
+    }
+  },
+  {
+    "id": "j5",
+    "companyId": "c3",
+    "title": "Workshop Apprentice",
+    "location": "Pune",
+    "description": "Join our fictional workshop apprentice team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Follow workshop procedures and produce quality-controlled work.",
+    "jobType": "Apprenticeship",
+    "salary": 16000,
+    "commuteMinutes": 35,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Safety",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "ITI",
+      "allowedLocations": ["Pune", "Nashik"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Safety",
+        "points": 30
+      },
+      {
+        "name": "Welding",
+        "points": 40
+      },
+      {
+        "name": "Machine Operation",
+        "points": 30
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 70,
+      "tier2Min": 40
+    }
+  },
+  {
+    "id": "j6",
+    "companyId": "c3",
+    "title": "CAD Technician",
+    "location": "Nashik",
+    "description": "Join our fictional cad technician team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Follow workshop procedures and produce quality-controlled work.",
+    "jobType": "Full-time",
+    "salary": 28000,
+    "commuteMinutes": 45,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "CAD",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "Diploma",
+      "allowedLocations": ["Nashik", "Pune"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "CAD",
+        "points": 50
+      },
+      {
+        "name": "Quality Control",
+        "points": 30
+      },
+      {
+        "name": "Excel",
+        "points": 20
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 75,
+      "tier2Min": 45
+    }
+  },
+  {
+    "id": "j7",
+    "companyId": "c4",
+    "title": "Patient Support Coordinator",
+    "location": "Pune",
+    "description": "Join our fictional patient support coordinator team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Coordinate service records and support routine care operations.",
+    "jobType": "Full-time",
+    "salary": 30000,
+    "commuteMinutes": 25,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Communication",
+          "threshold": 0.8
+        },
+        {
+          "name": "First Aid",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "Bachelor's",
+      "allowedLocations": ["Pune"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Communication",
+        "points": 35
+      },
+      {
+        "name": "First Aid",
+        "points": 35
+      },
+      {
+        "name": "Medical Records",
+        "points": 30
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 75,
+      "tier2Min": 45
+    }
+  },
+  {
+    "id": "j8",
+    "companyId": "c4",
+    "title": "Health Records Assistant",
+    "location": "Mumbai",
+    "description": "Join our fictional health records assistant team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Coordinate service records and support routine care operations.",
+    "jobType": "Part-time",
+    "salary": 24000,
+    "commuteMinutes": 55,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Medical Records",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "Diploma",
+      "allowedLocations": ["Mumbai"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Medical Records",
+        "points": 50
+      },
+      {
+        "name": "Excel",
+        "points": 30
+      },
+      {
+        "name": "Communication",
+        "points": 20
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 75,
+      "tier2Min": 45
+    }
+  },
+  {
+    "id": "j9",
+    "companyId": "c5",
+    "title": "Data Analyst",
+    "location": "Pune",
+    "description": "Join our fictional data analyst team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Build, test, and document dependable digital tools.",
+    "jobType": "Full-time",
+    "salary": 48000,
+    "commuteMinutes": null,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "SQL",
+          "threshold": 0.8
+        },
+        {
+          "name": "Python",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "Bachelor's",
+      "allowedLocations": ["Any"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "SQL",
+        "points": 35
+      },
+      {
+        "name": "Python",
+        "points": 35
+      },
+      {
+        "name": "Statistics",
+        "points": 20
+      },
+      {
+        "name": "Data Visualization",
+        "points": 10
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 80,
+      "tier2Min": 50
+    }
+  },
+  {
+    "id": "j10",
+    "companyId": "c5",
+    "title": "Research Data Fellow",
+    "location": "Delhi",
+    "description": "Join our fictional research data fellow team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Build, test, and document dependable digital tools.",
+    "jobType": "Traineeship",
+    "salary": 36000,
+    "commuteMinutes": 40,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Statistics",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "Master's",
+      "allowedLocations": ["Delhi", "Pune"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Statistics",
+        "points": 40
+      },
+      {
+        "name": "Python",
+        "points": 30
+      },
+      {
+        "name": "SQL",
+        "points": 30
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 80,
+      "tier2Min": 55
+    }
+  },
+  {
+    "id": "j11",
+    "companyId": "c6",
+    "title": "Office Skills Apprentice",
+    "location": "Pune",
+    "description": "Join our fictional office skills apprentice team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Practise workplace tasks with a supervisor.",
+    "jobType": "Apprenticeship",
+    "salary": 12000,
+    "commuteMinutes": 15,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Basic Computer",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "10th",
+      "allowedLocations": ["Any"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Basic Computer",
+        "points": 40
+      },
+      {
+        "name": "Communication",
+        "points": 35
+      },
+      {
+        "name": "Excel",
+        "points": 25
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 70,
+      "tier2Min": 40
+    }
+  },
+  {
+    "id": "j12",
+    "companyId": "c6",
+    "title": "Digital Support Intern",
+    "location": "Pune",
+    "description": "Join our fictional digital support intern team. Work on practical tasks with clear expectations and guided development.",
+    "workInvolved": "Practise workplace tasks with a supervisor.",
+    "jobType": "Internship",
+    "salary": 15000,
+    "commuteMinutes": 25,
+    "eligibility": {
+      "compulsorySkills": [
+        {
+          "name": "Communication",
+          "threshold": 0.8
+        }
+      ],
+      "minQualification": "12th",
+      "allowedLocations": ["Pune"],
+      "otherCriteria": []
+    },
+    "scoredSkills": [
+      {
+        "name": "Communication",
+        "points": 40
+      },
+      {
+        "name": "JavaScript",
+        "points": 35
+      },
+      {
+        "name": "Git",
+        "points": 25
+      }
+    ],
+    "tierCutoffs": {
+      "tier1Min": 75,
+      "tier2Min": 45
+    }
+  }
+]

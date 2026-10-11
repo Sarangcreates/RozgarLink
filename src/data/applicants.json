@@ -1,0 +1,384 @@
+[
+  {
+    "id": "a1",
+    "name": "Aarav Joshi",
+    "email": "a1@demo.test",
+    "phone": "9000000001",
+    "status": "job-seeker",
+    "degree": "Bachelor's",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Pune",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c1",
+    "goalRole": "j1",
+    "targetWeeks": 8,
+    "experienceYears": 2,
+    "skills": [
+      {
+        "name": "ReactJS",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "JavaScript",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "Node",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "SQL",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "Git",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "Docker",
+        "level": 5,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j1"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  },
+  {
+    "id": "a2",
+    "name": "Meera Kulkarni",
+    "email": "a2@demo.test",
+    "phone": "9000000002",
+    "status": "job-seeker",
+    "degree": "Diploma",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Pune",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c1",
+    "goalRole": "j1",
+    "targetWeeks": 8,
+    "experienceYears": 1,
+    "skills": [
+      {
+        "name": "React.js",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "JavaScript",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "Git",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "Docker",
+        "level": 5,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j1"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  },
+  {
+    "id": "a3",
+    "name": "Nila Patil",
+    "email": "a3@demo.test",
+    "phone": "9000000003",
+    "status": "job-seeker",
+    "degree": "12th",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Pune",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c2",
+    "goalRole": "j3",
+    "targetWeeks": 8,
+    "experienceYears": 0,
+    "skills": [
+      {
+        "name": "Excel",
+        "level": 1,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j3"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  },
+  {
+    "id": "a4",
+    "name": "Kabir Deshmukh",
+    "email": "a4@demo.test",
+    "phone": "9000000004",
+    "status": "job-seeker",
+    "degree": "ITI",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Nashik",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c3",
+    "goalRole": "j5",
+    "targetWeeks": 8,
+    "experienceYears": 1,
+    "skills": [
+      {
+        "name": "Safety",
+        "level": 4,
+        "evidence": "self"
+      },
+      {
+        "name": "Welding",
+        "level": 3,
+        "evidence": "self"
+      },
+      {
+        "name": "Machine Operation",
+        "level": 3,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j5"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  },
+  {
+    "id": "a5",
+    "name": "Sana Shah",
+    "email": "a5@demo.test",
+    "phone": "9000000005",
+    "status": "job-seeker",
+    "degree": "Bachelor's",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Pune",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c4",
+    "goalRole": "j7",
+    "targetWeeks": 8,
+    "experienceYears": 1,
+    "skills": [
+      {
+        "name": "Communication",
+        "level": 4,
+        "evidence": "self"
+      },
+      {
+        "name": "First Aid",
+        "level": 4,
+        "evidence": "self"
+      },
+      {
+        "name": "Medical Records",
+        "level": 3,
+        "evidence": "self"
+      },
+      {
+        "name": "React",
+        "level": 3,
+        "evidence": "self"
+      },
+      {
+        "name": "JavaScript",
+        "level": 3,
+        "evidence": "self"
+      },
+      {
+        "name": "Git",
+        "level": 2,
+        "evidence": "self"
+      },
+      {
+        "name": "Docker",
+        "level": 2,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j7"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  },
+  {
+    "id": "a6",
+    "name": "Dev More",
+    "email": "a6@demo.test",
+    "phone": "9000000006",
+    "status": "job-seeker",
+    "degree": "Diploma",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Nashik",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c3",
+    "goalRole": "j6",
+    "targetWeeks": 8,
+    "experienceYears": 1,
+    "skills": [
+      {
+        "name": "CAD",
+        "level": 3,
+        "evidence": "self"
+      },
+      {
+        "name": "Quality Control",
+        "level": 3,
+        "evidence": "self"
+      },
+      {
+        "name": "Excel",
+        "level": 2,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j6"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  },
+  {
+    "id": "a7",
+    "name": "Isha Rao",
+    "email": "a7@demo.test",
+    "phone": "9000000007",
+    "status": "job-seeker",
+    "degree": "Master's",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Delhi",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c5",
+    "goalRole": "j9",
+    "targetWeeks": 8,
+    "experienceYears": 2,
+    "skills": [
+      {
+        "name": "SQL",
+        "level": 4,
+        "evidence": "self"
+      },
+      {
+        "name": "Python",
+        "level": 4,
+        "evidence": "self"
+      },
+      {
+        "name": "Statistics",
+        "level": 5,
+        "evidence": "self"
+      },
+      {
+        "name": "Data Visualization",
+        "level": 3,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j9"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  },
+  {
+    "id": "a8",
+    "name": "Rohan Kale",
+    "email": "a8@demo.test",
+    "phone": "9000000008",
+    "status": "job-seeker",
+    "degree": "10th",
+    "college": "Demo Community Institute",
+    "year": 2026,
+    "location": "Pune",
+    "hobbies": ["Reading"],
+    "preferences": {
+      "commute": 40,
+      "minPay": 15000,
+      "jobType": null
+    },
+    "goalCompany": "c6",
+    "goalRole": "j11",
+    "targetWeeks": 8,
+    "experienceYears": 0,
+    "skills": [
+      {
+        "name": "Basic Computer",
+        "level": 2,
+        "evidence": "self"
+      },
+      {
+        "name": "Communication",
+        "level": 2,
+        "evidence": "self"
+      }
+    ],
+    "certificates": [],
+    "interestedJobIds": ["j11"],
+    "completedCourseIds": [],
+    "checkIns": [],
+    "progress": [],
+    "onboarded": false
+  }
+]
