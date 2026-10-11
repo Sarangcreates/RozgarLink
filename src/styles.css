@@ -460,11 +460,12 @@ textarea {
 }
 .hero-card-head small {
   color: #b4cfca;
-  font-size: 9px;
+  font-size: 11px;
 }
 .hero-card-head h3 {
-  font-size: 14px;
-  font-weight: 650;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
   margin-top: 5px;
 }
 .hero-card-head > svg {
@@ -485,22 +486,23 @@ textarea {
   border-radius: 6px;
   padding: 10px;
   color: #a7e6c8;
-  font-size: 10px;
+  font-size: 12px;
   margin: 22px 0;
 }
 .hero-skill-list > div {
   display: flex;
   align-items: center;
   gap: 15px;
-  font-size: 10px;
+  font-size: 12px;
   padding: 10px 0;
 }
 .hero-skill-list > div > span {
   width: 78px;
 }
 .hero-skill-list strong {
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
   color: #b4cfca;
 }
 .mini-track {
@@ -529,7 +531,7 @@ textarea {
   padding-top: 17px;
   margin-top: 14px;
   color: #bdd7d1;
-  font-size: 9px;
+  font-size: 11px;
 }
 .floating-label {
   position: absolute;
@@ -540,7 +542,7 @@ textarea {
   gap: 8px;
   background: white;
   padding: 13px 17px;
-  font-size: 10px;
+  font-size: 12px;
   border-radius: 8px;
   box-shadow: 0 8px 30px #21433e10;
   color: #496c5c;
@@ -561,10 +563,10 @@ textarea {
   transform: rotate(2deg);
 }
 .floating-path strong {
-  font-size: 10px;
+  font-size: 12px;
 }
 .floating-path p {
-  font-size: 9px;
+  font-size: 11px;
   color: #9dc0b7;
   margin-top: 5px;
 }
@@ -2044,14 +2046,14 @@ td small {
     padding: 20px;
   }
   .floating-label {
-    font-size: 8px;
+    font-size: 11px;
     right: 0;
   }
   .floating-path {
     padding: 15px;
   }
   .floating-path strong {
-    font-size: 9px;
+    font-size: 12px;
   }
   .principles-banner {
     flex-wrap: wrap;
