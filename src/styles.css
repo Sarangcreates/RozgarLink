@@ -278,7 +278,7 @@ textarea {
 .landing-header nav > a:active {
   box-shadow: inset 0 2px 5px #147e7618;
 }
-@media (any-hover: hover) and (prefers-reduced-motion: no-preference) {
+@media (any-hover: hover) {
   .landing-header nav > a:hover {
     transform: translateY(-7px) scale(1.16);
     box-shadow: 0 16px 32px #147e7640;
@@ -288,12 +288,10 @@ textarea {
     transform: translateY(-1px) scale(1.04);
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .landing-header nav > a:focus-visible {
-    transform: translateY(-7px) scale(1.16);
-    box-shadow: 0 16px 32px #147e7640;
-    z-index: 2;
-  }
+.landing-header nav > a:focus-visible {
+  transform: translateY(-7px) scale(1.16);
+  box-shadow: 0 16px 32px #147e7640;
+  z-index: 2;
 }
 .landing-hero {
   position: relative;
@@ -634,7 +632,7 @@ textarea {
     border-color 280ms ease,
     opacity 280ms ease;
 }
-@media (any-hover: hover) and (prefers-reduced-motion: no-preference) {
+@media (any-hover: hover) {
   .how-card:hover {
     transform: translateY(-10px) scale(1.1);
     border-color: #9accc1;
