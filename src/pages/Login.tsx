@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
 import { useStore } from "../store/useStore";
 import { Logo, Footer } from "../components/Layout";
@@ -9,6 +9,14 @@ export default function Login() {
     role = param === "company" ? "company" : "applicant";
   const { login, register } = useStore(),
     navigate = useNavigate();
+  const fromWelcome = useLocation().state?.fromWelcome === true;
+  const heading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (fromWelcome) {
+      window.scrollTo(0, 0);
+      heading.current?.focus({ preventScroll: true });
+    }
+  }, [fromWelcome]);
   const [creating, setCreating] = useState(false),
     [name, setName] = useState(""),
     [email, setEmail] = useState(""),
@@ -33,7 +41,7 @@ export default function Login() {
     }
   }
   return (
-    <div className="login-page">
+    <div className={`login-page${fromWelcome ? " login-entering" : ""}`}>
       <header className="landing-header">
         <Logo />
         <Link to="/" className="text-btn">
@@ -48,7 +56,7 @@ export default function Login() {
             <ShieldCheck size={15} />
             LOCAL PROTOTYPE
           </span>
-          <h1 className="welcome-headline">
+          <h1 className="welcome-headline" ref={heading} tabIndex={-1}>
             {role === "company"
               ? "Build your team."
               : "Your next chapter starts with you."}

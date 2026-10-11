@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   ShieldCheck,
@@ -16,8 +17,32 @@ import WelcomeHeadline from "../components/WelcomeHeadline";
 import CirclePatternBackdrop from "../components/CirclePatternBackdrop";
 export default function Landing() {
   const { data } = useStore();
+  const navigate = useNavigate();
+  const [leaving, setLeaving] = useState(false);
+  const transitionTimer = useRef<number>();
+  useEffect(() => () => window.clearTimeout(transitionTimer.current), []);
+  function getStarted(event: MouseEvent<HTMLAnchorElement>) {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
+    event.preventDefault();
+    if (transitionTimer.current !== undefined) return;
+    const openLogin = () =>
+      navigate("/login/applicant", { state: { fromWelcome: true } });
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      openLogin();
+      return;
+    }
+    setLeaving(true);
+    transitionTimer.current = window.setTimeout(openLogin, 220);
+  }
   return (
-    <div className="landing">
+    <div className={`landing${leaving ? " welcome-leaving" : ""}`}>
       <header className="landing-header">
         <Logo />
         <nav>
@@ -25,7 +50,12 @@ export default function Landing() {
           <a href="#principles">Our principles</a>
           <Link to="/login/company">For companies</Link>
         </nav>
-        <Link className="btn primary" to="/login/applicant">
+        <Link
+          className="btn primary"
+          to="/login/applicant"
+          onClick={getStarted}
+          aria-disabled={leaving}
+        >
           Get started <ArrowRight size={16} />
         </Link>
       </header>
