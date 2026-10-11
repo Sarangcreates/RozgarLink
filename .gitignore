@@ -1,5 +1,5 @@
 node_modules/
 dist/
 .env
-server/data/*.sqlite*
+server/data/
 *.log

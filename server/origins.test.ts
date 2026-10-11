@@ -9,6 +9,13 @@ describe("App origin handling", () => {
     vi.stubEnv("APP_ORIGINS", "");
     expect(
       allowedAppOrigin(
+        "https://rozgarlink.onrender.com",
+        "http://localhost:3001",
+        appOrigins(),
+      ),
+    ).toBe(true);
+    expect(
+      allowedAppOrigin(
         "https://rozgar-link.vercel.app",
         "http://localhost:3001",
         appOrigins(),

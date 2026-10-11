@@ -4,6 +4,12 @@ See [PROTOTYPE.md](PROTOTYPE.md) for current account setup and limitations. Pass
 
 ## Public website deployment
 
+### Database backups and Microsoft Edge
+
+Run `npm run backup` to save a consistent snapshot of the configured SQLite database in `server/data/backups/`. The command includes pending WAL changes and verifies database integrity. Local database files and backups are excluded from Git. This backs up the database accessible on the computer running the command; it does not download a separate Render database.
+
+Open `http://localhost:5173` in Microsoft Edge after `npm run dev`, or use the deployed `https://rozgarlink.onrender.com` address after deploying the latest backend. Both known Vercel and Render production addresses are enabled explicitly. For durable hosted data, the SQLite path must be on persistent storage; browser compatibility does not change where the data is saved.
+
 ### Optional Gemini explanations
 
 Copy `.env.example` to `.env`, add a replacement key as `GEMINI_API_KEY`, then restart `npm run dev`. Keep the key on the backend only; do not use a `VITE_` key. In a hosted backend, set `GEMINI_API_KEY` and optionally `GEMINI_MODEL` in that server's environment. Open **My tier** and click **Explain my points and tier**. The optional service sends matching results and goal skill gaps to Google only when requested. Names, emails, contact details, certificate identifiers, and other applicants are excluded. Gemini explains existing engine results; it never decides eligibility or updates scores, tiers, profiles, or courses. The rest of the app works offline without a key. This optional integration and its data transfer are explicitly approved by the user and override the original no-external-API rule for explanations only. A Gemini key does not replace the hosted backend required by Vercel.

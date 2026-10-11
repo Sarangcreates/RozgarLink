@@ -12,6 +12,7 @@
     "start": "node --import tsx server/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
+    "backup": "node scripts/backup.mjs",
     "seed": "node --import tsx server/seed-db.ts"
   },
   "dependencies": {

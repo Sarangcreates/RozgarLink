@@ -1,5 +1,8 @@
 export function appOrigins() {
-  const origins = new Set(["https://rozgar-link.vercel.app"]);
+  const origins = new Set([
+    "https://rozgar-link.vercel.app",
+    "https://rozgarlink.onrender.com",
+  ]);
   for (const host of ["localhost", "127.0.0.1"])
     for (const port of ["", ":5173", ":3001", ":4173", ":10000"])
       origins.add(`http://${host}${port}`);
