@@ -13,6 +13,7 @@ import { useStore } from "../store/useStore";
 import { Logo, Footer } from "../components/Layout";
 import MandalaBackdrop from "../components/MandalaBackdrop";
 import WelcomeHeadline from "../components/WelcomeHeadline";
+import CirclePatternBackdrop from "../components/CirclePatternBackdrop";
 export default function Landing() {
   const { data } = useStore();
   return (
@@ -30,6 +31,7 @@ export default function Landing() {
       </header>
       <main>
         <section className="landing-hero">
+          <CirclePatternBackdrop />
           <MandalaBackdrop />
           <div className="hero-copy">
             <span className="hero-pill">
@@ -65,9 +67,7 @@ export default function Landing() {
             </div>
             <div className="hero-match-card">
               <div className="hero-card-head">
-                <div className="company-logo">
-                  CB
-                </div>
+                <div className="company-logo">CB</div>
                 <div>
                   <small>{data.companies[0].name}</small>
                   <h3>{data.opportunities[0].title}</h3>

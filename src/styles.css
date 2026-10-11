@@ -312,6 +312,28 @@ textarea {
   );
   min-height: 590px;
 }
+.hero-circle-backdrop {
+  position: absolute;
+  inset: 0 40% 0 0;
+  overflow: hidden;
+  color: var(--teal);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: -1;
+  mask-image: linear-gradient(to right, black 15%, #0009 50%, transparent 100%);
+}
+.hero-circle-backdrop > svg {
+  position: absolute;
+  width: clamp(650px, 72vw, 950px);
+  height: auto;
+  left: -24%;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke-width: 1.4;
+}
+.hero-circle-backdrop circle {
+  vector-effect: non-scaling-stroke;
+}
 .hero-mandala-backdrop {
   position: absolute;
   inset: 0 0 0 52%;
@@ -336,6 +358,14 @@ textarea {
   vector-effect: non-scaling-stroke;
 }
 @media (max-width: 650px) {
+  .hero-circle-backdrop {
+    inset: 0 0 42%;
+    opacity: 0.16;
+  }
+  .hero-circle-backdrop > svg {
+    width: 155%;
+    left: -38%;
+  }
   .hero-mandala-backdrop {
     inset: 55% 0 0;
     opacity: 0.28;
