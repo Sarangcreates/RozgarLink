@@ -63,7 +63,15 @@ export function Stat({
         <span>{label}</span>
         {icon}
       </div>
-      <strong>{value}</strong>
+      <strong
+        className={
+          typeof value === "string" && value.length > 12
+            ? "stat-value-text"
+            : undefined
+        }
+      >
+        {value}
+      </strong>
       {detail && <small>{detail}</small>}
     </div>
   );
