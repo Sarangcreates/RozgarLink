@@ -272,6 +272,7 @@ textarea {
   opacity: 0.38;
   pointer-events: none;
   z-index: -1;
+  mask-image: linear-gradient(to right, transparent, black 32%);
 }
 .hero-mandala-backdrop > svg {
   position: absolute;
@@ -279,7 +280,7 @@ textarea {
   height: auto;
   right: -22%;
   top: 50%;
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.35);
   stroke-width: 1.4;
 }
 .hero-mandala-backdrop path,
