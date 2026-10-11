@@ -304,6 +304,8 @@ export function JobCard({
           <ArrowUpRight size={14} />
         </button>
       </div>
+      <ApplyButton jobId={job.id} />
     </article>
   );
 }
+import ApplyButton from "./ApplyButton";

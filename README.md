@@ -138,6 +138,16 @@ Results are decision support. Criteria used are those stated by each opportunity
 
 # Sample marketplace
 
+Eligible applicants can use **Apply for this job** on job cards and opportunity
+details. Applications are saved separately from bookmarks and listed in the
+applicant overview. Company opportunity pages show submitted applications and
+their current eligibility and tier. The server checks eligibility at submission,
+prevents duplicate applications and shares the matching profile only with the
+receiving company unless the applicant also opts into the public company pool.
+Applications remain saved if later profile or requirement changes affect
+eligibility. This is an internal RozgarLink application record; fictional sample
+vacancies do not submit anything to the real named brands.
+
 The local seed includes illustrative Google, Netflix, Amazon, NVIDIA, GoDaddy,
 Persistent, Facebook, OpenAI and Tesla scenarios. Brand names are used for demo
 context only: these are not affiliated companies, real vacancies or official

@@ -11,6 +11,73 @@ import { quizForSkill } from "../data/quizzes";
 import type { Certificate } from "../engine/types";
 const now = new Date("2026-10-11T12:00:00");
 describe("validated demo mutations and evidence", () => {
+  it("saves eligible applications separately from bookmarks and prevents duplicates", async () => {
+    const initial = createSeed();
+    const applicant = initial.applicants.find(
+      (a) => a.id === "sample-applicant-google-1",
+    )!;
+    const action = { type: "apply" as const, jobId: applicant.goalRole };
+    const session = { role: "applicant" as const, id: applicant.id };
+    const next = await applyAction(initial, session, action, now);
+    const saved = next.applicants.find((a) => a.id === applicant.id)!;
+    expect(saved.applications).toEqual([
+      { jobId: action.jobId, submittedAt: now.toISOString() },
+    ]);
+    expect(saved.interestedJobIds).toEqual([]);
+    expect(
+      initial.applicants.find((a) => a.id === applicant.id)!.applications,
+    ).toBeUndefined();
+    await expect(applyAction(next, session, action, now)).rejects.toThrow(
+      "already applied",
+    );
+    saved.degree = "Diploma";
+    expect(
+      scoreApplicant(
+        saved,
+        next.opportunities.find((j) => j.id === action.jobId)!,
+      ).eligible,
+    ).toBe(false);
+    expect(saved.applications).toHaveLength(1);
+  });
+  it("rejects ineligible, missing-job and company applications", async () => {
+    const data = createSeed();
+    await expect(
+      applyAction(
+        data,
+        { role: "applicant", id: "sample-applicant-google-4" },
+        { type: "apply", jobId: "sample-job-google" },
+        now,
+      ),
+    ).rejects.toThrow("every compulsory");
+    await expect(
+      applyAction(
+        data,
+        { role: "applicant", id: "a1" },
+        { type: "apply", jobId: "missing" },
+        now,
+      ),
+    ).rejects.toThrow("not found");
+    await expect(
+      applyAction(
+        data,
+        { role: "company", id: "c1" },
+        { type: "apply", jobId: "j1" },
+        now,
+      ),
+    ).rejects.toThrow("Applicant access");
+  });
+  it("profile updates cannot forge application records", async () => {
+    const data = createSeed();
+    const applicant = structuredClone(data.applicants[0]);
+    applicant.applications = [{ jobId: "j1", submittedAt: now.toISOString() }];
+    const next = await applyAction(
+      data,
+      { role: "applicant", id: applicant.id },
+      { type: "profile", applicant },
+      now,
+    );
+    expect(next.applicants[0].applications).toBeUndefined();
+  });
   it("two local courses move Nila’s reporting job from Tier 3 to Tier 2 with exact points", async () => {
     let d = createSeed();
     const a = () => d.applicants.find((a) => a.id === "a3")!,

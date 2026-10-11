@@ -14,6 +14,7 @@ import {
 import {
   evaluateApplicant,
   overallTier,
+  scoreApplicant,
   validateOpportunity,
 } from "../engine/matching";
 import { verifyCertificate } from "./certificates";
@@ -221,6 +222,8 @@ export async function applyAction(
         checkIns: a.checkIns,
         progress: a.progress,
         interestedJobIds: a.interestedJobIds,
+        applications: a.applications,
+        sample: a.sample,
       });
       if (changedSkills.length)
         event = {
@@ -228,6 +231,21 @@ export async function applyAction(
           label: `Added ${changedSkills.map((s) => s.name).join(", ")}`,
           xp: 10 * changedSkills.length,
         };
+    } else if (action.type === "apply") {
+      const job = d.opportunities.find((j) => j.id === action.jobId);
+      assert(job, "Opportunity not found.");
+      assert(
+        scoreApplicant(a, job).eligible,
+        "You must meet every compulsory requirement before applying.",
+      );
+      assert(
+        !a.applications?.some((application) => application.jobId === job.id),
+        "You have already applied to this opportunity.",
+      );
+      a.applications = [
+        ...(a.applications || []),
+        { jobId: job.id, submittedAt: now.toISOString() },
+      ];
     } else if (action.type === "bookmark") {
       assert(
         d.opportunities.some((j) => j.id === action.jobId),

@@ -17,6 +17,7 @@ import {
   Modal,
   PageTitle,
   Stat,
+  TierChip,
 } from "../components/ui";
 import type { MatchResult } from "../engine/types";
 export function ApplicantDashboard() {
@@ -103,6 +104,47 @@ export function ApplicantDashboard() {
           Explore my path
         </Link>
       </div>
+      <section className="panel" style={{ marginTop: 24 }}>
+        <h2>My applications</h2>
+        {!a.applications?.length && (
+          <p>
+            You haven't applied yet. Choose an eligible opportunity and press
+            Apply.
+          </p>
+        )}
+        {(a.applications || []).map((application) => {
+          const job = data.opportunities.find(
+            (j) => j.id === application.jobId,
+          );
+          const match = results.find(
+            (r) => r.opportunityId === application.jobId,
+          );
+          return (
+            <div className="gap-item" key={application.jobId}>
+              <div>
+                <Link to={"/opportunity/" + application.jobId}>
+                  {job?.title || "Listing no longer available"}
+                </Link>
+                <p>
+                  Submitted{" "}
+                  {new Date(application.submittedAt).toLocaleDateString()} ·{" "}
+                  {data.companies.find((c) => c.id === job?.companyId)?.name}
+                </p>
+                {match && !match.eligible && (
+                  <p>
+                    Current requirements no longer met. Your application remains
+                    saved.
+                  </p>
+                )}
+              </div>
+              <div>
+                <strong>Submitted</strong>
+                {match && <TierChip tier={match.tier} />}
+              </div>
+            </div>
+          );
+        })}
+      </section>
       <div className="section-heading matches-heading">
         <div>
           <h2>Your strongest matches</h2>

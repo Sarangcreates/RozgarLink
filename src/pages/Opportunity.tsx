@@ -17,6 +17,7 @@ import {
   money,
 } from "../components/ui";
 import Reviews from "../components/Reviews";
+import ApplyButton from "../components/ApplyButton";
 import type { Applicant } from "../engine/types";
 export default function OpportunityPage() {
   const { id } = useParams(),
@@ -149,14 +150,56 @@ export default function OpportunityPage() {
           )}
         </div>
       </div>
+      {own && (
+        <section className="panel" style={{ marginTop: 24 }}>
+          <h2>Submitted applications</h2>
+          <p className="small-note">
+            Eligibility is checked again using your current requirements.
+          </p>
+          {pool
+            .filter(({ a }) =>
+              a.applications?.some(
+                (application) => application.jobId === job.id,
+              ),
+            )
+            .map(({ a, r }) => (
+              <div className="gap-item" key={a.id}>
+                <div>
+                  <strong>{a.name}</strong>
+                  <p>
+                    Submitted{" "}
+                    {new Date(
+                      a.applications!.find(
+                        (application) => application.jobId === job.id,
+                      )!.submittedAt,
+                    ).toLocaleDateString()}
+                  </p>
+                  {!r.eligible &&
+                    r.failed.map((failure) => (
+                      <p key={failure.label}>{failure.reason}</p>
+                    ))}
+                </div>
+                <div>
+                  <TierChip tier={r.tier} />
+                  <button className="text-btn" onClick={() => setAudit(a)}>
+                    View evaluation
+                  </button>
+                </div>
+              </div>
+            ))}
+          {!pool.some(({ a }) =>
+            a.applications?.some((application) => application.jobId === job.id),
+          ) && <p>No applications submitted yet.</p>}
+        </section>
+      )}
       {session?.role === "company" && (
         <>
           <div className="section-heading">
             <div>
               <h2>Applicant matching leaderboard</h2>
               <p>
-                All fictional profiles · eligible candidates ranked using skill
-                points and preference fit.
+                Shared matching profiles · eligible candidates ranked using
+                skill points and preference fit.
               </p>
             </div>
           </div>
@@ -279,6 +322,7 @@ export default function OpportunityPage() {
             <TierChip tier={result.tier} />
           </div>
           <Audit result={result} job={job} />
+          <ApplyButton jobId={job.id} />
           <Link
             className="btn primary"
             style={{ marginTop: 20 }}

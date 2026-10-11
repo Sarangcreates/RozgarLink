@@ -77,9 +77,26 @@ export function createApp(path: string) {
           ? data.applicants.filter((a) => a.id === actor.id)
           : actor?.role === "company"
             ? data.applicants
-                .filter((a) => a.discoverable === true)
+                .filter(
+                  (a) =>
+                    a.discoverable === true ||
+                    a.applications?.some((application) =>
+                      data.opportunities.some(
+                        (job) =>
+                          job.id === application.jobId &&
+                          job.companyId === actor.id,
+                      ),
+                    ),
+                )
                 .map((a) => ({
                   ...a,
+                  applications: (a.applications || []).filter((application) =>
+                    data.opportunities.some(
+                      (job) =>
+                        job.id === application.jobId &&
+                        job.companyId === actor.id,
+                    ),
+                  ),
                   email: "",
                   phone: "",
                   certificates: a.certificates.map((c) => ({

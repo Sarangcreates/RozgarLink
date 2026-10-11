@@ -113,6 +113,7 @@ export function CompanyDashboard() {
                 <th>Opportunity</th>
                 <th>Pay / month</th>
                 <th>Eligible</th>
+                <th>Applications</th>
                 <th>Tier 1</th>
                 <th>Tier 2</th>
                 <th>Tier 3</th>
@@ -136,6 +137,15 @@ export function CompanyDashboard() {
                     </td>
                     <td>{money(j.salary)}</td>
                     <td>{results.length}</td>
+                    <td>
+                      {
+                        data.applicants.filter((a) =>
+                          a.applications?.some(
+                            (application) => application.jobId === j.id,
+                          ),
+                        ).length
+                      }
+                    </td>
                     {(["Tier 1", "Tier 2", "Tier 3"] as const).map((t) => (
                       <td key={t}>
                         {results.filter((r) => r.tier === t).length}
@@ -155,7 +165,8 @@ export function CompanyDashboard() {
       )}
       <p className="small-note">
         The leaderboard evaluates profiles shared by applicants. These are
-        matching profiles, not submitted applications.
+        matching profiles. Open an opportunity to see its submitted applications
+        separately.
       </p>
       <section aria-labelledby="candidate-directory-title">
         <div className="section-heading">

@@ -46,6 +46,7 @@ export interface ProgressEvent {
   tier?: Tier | null;
 }
 export interface Applicant {
+  applications?: { jobId: string; submittedAt: string }[];
   sample?: boolean;
   discoverable?: boolean;
   id: string;
@@ -198,6 +199,7 @@ export type Action =
   | { type: "opportunity"; opportunity: Opportunity }
   | { type: "review"; review: Review }
   | { type: "bookmark"; jobId: string }
+  | { type: "apply"; jobId: string }
   | { type: "course"; courseId: string }
   | { type: "certificate"; certificate: Certificate }
   | { type: "checkin"; checkIn: CheckIn }
