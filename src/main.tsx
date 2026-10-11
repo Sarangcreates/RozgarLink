@@ -3,27 +3,41 @@ import ReactDOM from "react-dom/client";
 import "./styles.css";
 import App from "./App";
 const root = document.getElementById("root")!;
-const iconAnimations = new WeakMap<SVGElement, Animation>();
-root.addEventListener("click", (event) => {
+const iconAnimations = new WeakMap<Element, Animation>();
+function popIcon(event: Event) {
+  // Start on touch-down, before a navigation can replace the clicked icon.
+  if (event instanceof MouseEvent && event.type === "click" && event.detail > 0)
+    return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const control = (event.target as Element).closest("button, a");
   if (!control || control.matches(":disabled, [aria-disabled='true']")) return;
   control.querySelectorAll<SVGElement>("svg.lucide").forEach((icon) => {
-    iconAnimations.get(icon)?.cancel();
+    const target = control.classList.contains("icon-btn") ? control : icon;
+    iconAnimations.get(target)?.cancel();
+    const base = getComputedStyle(target).transform;
+    const transform = base === "none" ? "" : base;
     iconAnimations.set(
-      icon,
-      icon.animate(
+      target,
+      target.animate(
         [
-          { scale: "1", offset: 0 },
-          { scale: "1.3", offset: 0.4 },
-          { scale: "0.95", offset: 0.75 },
-          { scale: "1", offset: 1 },
+          { transform: `${transform} translateY(0) scale(1)`, offset: 0 },
+          {
+            transform: `${transform} translateY(-8px) scale(1.45)`,
+            offset: 0.35,
+          },
+          {
+            transform: `${transform} translateY(2px) scale(0.92)`,
+            offset: 0.7,
+          },
+          { transform: `${transform} translateY(0) scale(1)`, offset: 1 },
         ],
-        { duration: 360, easing: "ease-out" },
+        { duration: 550, easing: "ease-out" },
       ),
     );
   });
-});
+}
+root.addEventListener("pointerdown", popIcon);
+root.addEventListener("click", popIcon);
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <App />
