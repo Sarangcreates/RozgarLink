@@ -1452,15 +1452,15 @@ footer small {
 .goal-empty-backdrop > .hero-circle-backdrop {
   inset: 0;
   opacity: 0.3;
-  mask-image: linear-gradient(to right, transparent, black 45%);
+  mask-image: none;
 }
 .goal-empty-backdrop > .hero-circle-backdrop svg {
-  width: 580px;
+  width: 800px;
   max-width: none;
-  left: auto;
-  right: -100px;
+  left: 50%;
+  right: auto;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   stroke-width: 1.7;
 }
 .goal-empty-backdrop > .empty-state {
