@@ -68,6 +68,10 @@ a svg.lucide {
   --soft: #eef7f5;
   --field: #fff;
   --workspace-card-shadow: 0 4px 16px #173f3d0f;
+  --stat-background: linear-gradient(145deg, #f1fbf8, #dcefeb);
+  --stat-border: #bcded7;
+  --stat-shadow: 0 6px 12px #147e761a, 0 18px 30px #173f3d26;
+  --workspace-text-shadow: 0 3px 5px #172c3b26, 0 8px 16px #147e761a;
 }
 * {
   box-sizing: border-box;
@@ -123,6 +127,10 @@ textarea {
   --soft: #193b3a;
   --field: #13232e;
   --workspace-card-shadow: 0 4px 16px #00000030;
+  --stat-background: linear-gradient(145deg, #204744, #193532);
+  --stat-border: #38635e;
+  --stat-shadow: 0 6px 12px #00000026, 0 18px 30px #00000040;
+  --workspace-text-shadow: 0 3px 5px #00000040, 0 8px 16px #00000026;
   color: var(--text);
   background: var(--bg);
 }
@@ -1030,6 +1038,7 @@ footer small {
   line-height: 1.2;
   letter-spacing: -1px;
   margin-bottom: 11px;
+  text-shadow: var(--workspace-text-shadow);
 }
 .page-title .muted {
   font-size: 12px;
@@ -1043,11 +1052,11 @@ footer small {
 }
 .stat {
   min-width: 0;
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: var(--stat-background);
+  border: 1px solid var(--stat-border);
   border-radius: 10px;
   padding: 19px 20px;
-  box-shadow: var(--workspace-card-shadow);
+  box-shadow: var(--stat-shadow);
 }
 .stat-top {
   display: flex;
@@ -1071,6 +1080,7 @@ footer small {
   letter-spacing: -1px;
   display: block;
   margin: 10px 0 7px;
+  text-shadow: var(--workspace-text-shadow);
 }
 .stat > .stat-value-text {
   font-size: 20px;
