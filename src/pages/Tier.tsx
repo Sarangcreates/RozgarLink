@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { request } from "../lib/api";
 import { ArrowRight, Layers3 } from "lucide-react";
 import { useStore } from "../store/useStore";
 import {
@@ -9,6 +11,13 @@ import {
 } from "../engine/matching";
 import { PageTitle, TierChip, Empty } from "../components/ui";
 export default function TierPage() {
+  const [insight, setInsight] = useState<{
+    text: string;
+    revision: number;
+    applicantId: string;
+  } | null>(null);
+  const [insightError, setInsightError] = useState("");
+  const [explaining, setExplaining] = useState(false);
   const { data, session } = useStore(),
     a = data.applicants.find((a) => a.id === session!.id)!,
     results = evaluateApplicant(a, data.opportunities),
@@ -17,6 +26,21 @@ export default function TierPage() {
     path = goal ? recommendPath(skillGap(a, goal), data.courses) : null;
   const target =
     overall.scorePct >= 70 ? 100 : overall.scorePct >= 40 ? 70 : 40;
+  async function explain() {
+    setExplaining(true);
+    setInsightError("");
+    setInsight(null);
+    const applicantId = a.id;
+    try {
+      const response = await request("/tier-insight", {});
+      if (useStore.getState().session?.id === applicantId)
+        setInsight({ ...response, applicantId });
+    } catch (error) {
+      setInsightError((error as Error).message);
+    } finally {
+      setExplaining(false);
+    }
+  }
   const eligibleCompanies = [
     ...new Set(
       results
@@ -39,6 +63,46 @@ export default function TierPage() {
         title="Your tier. Your next milestone."
         description="Overall tier reflects your best eligible skill matches, not XP or hiring probability."
       />
+      <section
+        className="panel tier-insight-panel"
+        aria-label="AI skill guidance"
+      >
+        <h2>Understand your skill standing</h2>
+        <p className="muted">
+          Get a Gemini explanation of your calculated points, tier, and next
+          steps. This sends your matching results and skill gaps to Google,
+          without your name or contact details.
+        </p>
+        <button className="btn primary" disabled={explaining} onClick={explain}>
+          {explaining
+            ? "Explaining your results…"
+            : "Explain my points and tier"}
+        </button>
+        <div aria-live="polite">
+          {insightError && (
+            <p className="form-error" role="alert">
+              {insightError}
+            </p>
+          )}
+          {insight &&
+            insight.revision === data.revision &&
+            insight.applicantId === a.id && (
+              <>
+                <p className="small-note">
+                  AI suggestions. The calculated scores and eligibility rules on
+                  this page remain authoritative.
+                </p>
+                <p className="tier-insight-text">{insight.text}</p>
+              </>
+            )}
+          {insight && insight.revision !== data.revision && (
+            <p className="small-note">
+              Your profile or opportunities changed. Generate a fresh
+              explanation.
+            </p>
+          )}
+        </div>
+      </section>
       {!overall.tier ? (
         <Empty
           title="Not yet eligible for any listed opportunity"

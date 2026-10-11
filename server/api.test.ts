@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -173,6 +173,55 @@ describe("Local prototype API", () => {
         })
       ).res.status,
     ).toBe(400);
+  });
+  it("limits AI explanations to the signed-in applicant and leaves database records unchanged", async () => {
+    expect((await req("/tier-insight", {}, "")).res.status).toBe(403);
+    expect((await req("/tier-insight", {}, companyCookie)).res.status).toBe(
+      403,
+    );
+    vi.stubEnv("GEMINI_API_KEY", "test-only-key");
+    const originalFetch = globalThis.fetch;
+    const spy = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementation((input, init) => {
+        if (
+          String(input).startsWith("https://generativelanguage.googleapis.com/")
+        )
+          return Promise.resolve(
+            Response.json({
+              candidates: [
+                {
+                  content: {
+                    parts: [
+                      { text: "Suggestions based on your matching results." },
+                    ],
+                  },
+                },
+              ],
+            }),
+          );
+        return originalFetch(input, init);
+      });
+    try {
+      const before = repo.read();
+      const response = await req("/tier-insight", { applicantId: "a1" });
+      expect(response.res.status).toBe(200);
+      expect(response.data.revision).toBe(before.revision);
+      expect(response.data.text).toContain("Suggestions");
+      expect(repo.read()).toEqual(before);
+      const call = spy.mock.calls.find(([url]) =>
+        String(url).startsWith("https://generativelanguage.googleapis.com/"),
+      )!;
+      const context = JSON.parse(
+        JSON.parse(String(call[1]?.body)).contents[0].parts[0].text,
+      );
+      const own = before.applicants.find((a) => a.id === applicantId)!;
+      expect(context.overall.count).toBe(0);
+      expect(JSON.stringify(context)).not.toContain(own.email);
+    } finally {
+      spy.mockRestore();
+      vi.unstubAllEnvs();
+    }
   });
   it("logs out, then signs back in using the account password", async () => {
     expect((await req("/auth/logout", {})).res.status).toBe(200);

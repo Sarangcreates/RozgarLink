@@ -2,9 +2,12 @@ import express from "express";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
+import { loadEnvFile } from "node:process";
 import { createApp } from "./app";
-const root = fileURLToPath(new URL("../", import.meta.url)),
-  path = process.env.DB_PATH || resolve(root, "server/data/rozgarlink.sqlite");
+const root = fileURLToPath(new URL("../", import.meta.url));
+if (existsSync(resolve(root, ".env"))) loadEnvFile(resolve(root, ".env"));
+const path =
+  process.env.DB_PATH || resolve(root, "server/data/rozgarlink.sqlite");
 const { app, repo } = createApp(path);
 if (!process.argv.includes("--dev")) {
   const dist = resolve(root, "dist");

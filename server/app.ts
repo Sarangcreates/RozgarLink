@@ -9,6 +9,7 @@ import type { Session, Action, DataSet, Applicant } from "../src/engine/types";
 import { applyAction } from "../src/lib/actions";
 import { evaluateApplicant } from "../src/engine/matching";
 import { openDatabase } from "./database";
+import { explainTier, InsightError } from "./gemini";
 export function createApp(path: string) {
   const hostedOrigin = process.env.APP_ORIGIN
     ? new URL(process.env.APP_ORIGIN).origin
@@ -134,6 +135,31 @@ export function createApp(path: string) {
   app.get("/api/state", (req, res) =>
     res.json({ data: visible(repo.read(), session(req)) }),
   );
+  app.post("/api/tier-insight", async (req, res) => {
+    const actor = session(req);
+    if (!actor || actor.role !== "applicant")
+      return res
+        .status(403)
+        .json({ error: "Sign in as an applicant to explain your tier." });
+    if (rateLimit(req, res)) return;
+    const data = repo.read();
+    const applicant = data.applicants.find((a) => a.id === actor.id);
+    if (!applicant)
+      return res.status(404).json({ error: "Applicant not found." });
+    try {
+      const text = await explainTier(applicant, data);
+      res.json({ text, revision: data.revision });
+    } catch (error) {
+      res
+        .status(error instanceof InsightError ? error.status : 502)
+        .json({
+          error:
+            error instanceof InsightError
+              ? error.message
+              : "AI explanations are temporarily unavailable.",
+        });
+    }
+  });
   app.post("/api/auth/register", (req, res) => {
     if (rateLimit(req, res)) return;
     queue = queue

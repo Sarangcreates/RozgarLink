@@ -1115,6 +1115,20 @@ footer small {
 .profile-page > .panel + .page-title {
   margin-top: 22px;
 }
+.tier-insight-panel {
+  margin-bottom: 24px;
+  background: var(--stat-background);
+  border-color: var(--stat-border);
+  box-shadow: var(--stat-shadow);
+}
+.tier-insight-panel > .btn {
+  margin-top: 18px;
+}
+.tier-insight-text {
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.8;
+}
 .panel h3 {
   font-size: 13px;
   font-weight: 700;
