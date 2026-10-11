@@ -415,8 +415,9 @@ textarea {
 }
 .hero-copy > p {
   font-size: 14px;
+  font-weight: 500;
   line-height: 1.9;
-  color: #69808c;
+  color: #435e6b;
   max-width: 470px;
 }
 .hero-buttons {
