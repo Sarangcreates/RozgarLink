@@ -2,6 +2,16 @@
 
 See [PROTOTYPE.md](PROTOTYPE.md) for current account setup and limitations. Password registration replaces the old demo OTP; judge reset and account switching are disabled. The older demo documentation below describes the original version.
 
+## Public website deployment
+
+The Vercel frontend needs a running backend; a static build cannot provide sign-in or SQLite persistence. The `vercel.json` API rewrite and `api/proxy.ts` function forward same-origin API requests to the server specified by the Vercel environment variable `BACKEND_URL`. They preserve login cookies and never cache account responses.
+
+Deploy the included Dockerfile on a Node-compatible container host with a persistent volume mounted at `/data`. Use one server instance for this SQLite database. Set `APP_ORIGIN=https://rozgar-link.vercel.app`, keep `COOKIE_SECURE=true`, and expose port 3001 through HTTPS. Local data is not uploaded automatically; online accounts start in a separate database. Keep the persistent volume across redeployments.
+
+Once the backend's HTTPS URL is available, set `BACKEND_URL` in the Vercel project's Production environment to that URL (no `/api` suffix), then redeploy. Check `/api/health` on the Vercel domain: it must return JSON with `ok: true`. Register an online account, sign out, sign back in, and verify profile changes remain after a backend restart. The backend and Vercel function require Node.js 24.
+
+Without Docker, run `npm ci`, `npm run build`, and `npm start` on a server with `HOST=0.0.0.0`, `PORT` set to the host's assigned port, `DB_PATH` pointing to persistent storage, `APP_ORIGIN` set to the public frontend origin, and `COOKIE_SECURE=true` behind HTTPS. No hosting service or paid resource has been provisioned by these changes.
+
 # RozgarLink
 
 A fictional Skills-to-Opportunity Matching Engine for a GovTech hackathon. One app with company and applicant portals, an explained deterministic matching engine, and a free local SQLite database.

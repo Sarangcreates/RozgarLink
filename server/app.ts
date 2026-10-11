@@ -10,6 +10,9 @@ import { applyAction } from "../src/lib/actions";
 import { evaluateApplicant } from "../src/engine/matching";
 import { openDatabase } from "./database";
 export function createApp(path: string) {
+  const hostedOrigin = process.env.APP_ORIGIN
+    ? new URL(process.env.APP_ORIGIN).origin
+    : undefined;
   const repo = openDatabase(path),
     app = express();
   app.disable("x-powered-by");
@@ -28,14 +31,15 @@ export function createApp(path: string) {
       if (req.headers.origin) {
         try {
           if (
-            !["localhost", "127.0.0.1"].includes(
+            new URL(req.headers.origin).origin !== hostedOrigin &&
+            (!["localhost", "127.0.0.1"].includes(
               new URL(req.headers.origin).hostname,
             ) ||
-            !["5173", "3001", ""].includes(new URL(req.headers.origin).port)
+              !["5173", "3001", ""].includes(new URL(req.headers.origin).port))
           )
             return res
               .status(403)
-              .json({ error: "Local prototype origin required." });
+              .json({ error: "This website is not an allowed app origin." });
         } catch {
           return res.status(403).json({ error: "Invalid origin." });
         }
