@@ -10,6 +10,8 @@ Copy `.env.example` to `.env`, add a replacement key as `GEMINI_API_KEY`, then r
 
 ### Hosting setup
 
+The canonical `https://rozgar-link.vercel.app` frontend and local ports 5173, 3001, and 4173 are trusted by default. Direct same-origin requests to the server-hosted app are also accepted. For additional production, custom, or preview domains, set `APP_ORIGINS` to a comma-separated list of their full origins (for example `https://your-custom-domain.example,https://your-preview.example`), then restart the backend. `APP_ORIGIN` remains supported. A changed environment setting takes effect when the backend restarts. Keep unrelated domains out of the allowlist.
+
 The Vercel frontend needs a running backend; a static build cannot provide sign-in or SQLite persistence. The `vercel.json` API rewrite and `api/proxy.ts` function forward same-origin API requests to the server specified by the Vercel environment variable `BACKEND_URL`. They preserve login cookies and never cache account responses.
 
 Deploy the included Dockerfile on a Node-compatible container host with a persistent volume mounted at `/data`. Use one server instance for this SQLite database. Set `APP_ORIGIN=https://rozgar-link.vercel.app`, keep `COOKIE_SECURE=true`, and expose port 3001 through HTTPS. Local data is not uploaded automatically; online accounts start in a separate database. Keep the persistent volume across redeployments.

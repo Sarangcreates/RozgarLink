@@ -10,10 +10,9 @@ import { applyAction } from "../src/lib/actions";
 import { evaluateApplicant } from "../src/engine/matching";
 import { openDatabase } from "./database";
 import { explainTier, InsightError } from "./gemini";
+import { appOrigins, allowedAppOrigin } from "./origins";
 export function createApp(path: string) {
-  const hostedOrigin = process.env.APP_ORIGIN
-    ? new URL(process.env.APP_ORIGIN).origin
-    : undefined;
+  const origins = appOrigins();
   const repo = openDatabase(path),
     app = express();
   app.disable("x-powered-by");
@@ -30,20 +29,19 @@ export function createApp(path: string) {
       if (req.headers["sec-fetch-site"] === "cross-site")
         return res.status(403).json({ error: "Cross-site mutation rejected." });
       if (req.headers.origin) {
-        try {
-          if (
-            new URL(req.headers.origin).origin !== hostedOrigin &&
-            (!["localhost", "127.0.0.1"].includes(
-              new URL(req.headers.origin).hostname,
-            ) ||
-              !["5173", "3001", ""].includes(new URL(req.headers.origin).port))
+        if (
+          !allowedAppOrigin(
+            req.headers.origin,
+            `${req.protocol}://${req.get("host")}`,
+            origins,
           )
-            return res
-              .status(403)
-              .json({ error: "This website is not an allowed app origin." });
-        } catch {
-          return res.status(403).json({ error: "Invalid origin." });
-        }
+        )
+          return res
+            .status(403)
+            .json({
+              error:
+                "This website address has not been enabled on the backend. Add it to APP_ORIGINS and restart the backend.",
+            });
       }
     }
     next();
@@ -150,14 +148,12 @@ export function createApp(path: string) {
       const text = await explainTier(applicant, data);
       res.json({ text, revision: data.revision });
     } catch (error) {
-      res
-        .status(error instanceof InsightError ? error.status : 502)
-        .json({
-          error:
-            error instanceof InsightError
-              ? error.message
-              : "AI explanations are temporarily unavailable.",
-        });
+      res.status(error instanceof InsightError ? error.status : 502).json({
+        error:
+          error instanceof InsightError
+            ? error.message
+            : "AI explanations are temporarily unavailable.",
+      });
     }
   });
   app.post("/api/auth/register", (req, res) => {
