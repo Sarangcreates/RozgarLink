@@ -573,6 +573,12 @@ textarea {
   font-weight: 650;
   margin: 14px 0 33px;
 }
+#how > h2 {
+  font-size: clamp(32px, 4.5vw, 56px);
+  text-shadow:
+    0 5px 8px #172c3b38,
+    0 14px 28px #172c3b26;
+}
 .how-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
