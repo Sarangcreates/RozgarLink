@@ -28,6 +28,28 @@ export default function Landing() {
       </header>
       <main>
         <section className="landing-hero">
+          <svg
+            className="hero-line-pattern"
+            viewBox="0 0 1200 650"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <g fill="none" stroke="currentColor" strokeLinecap="round">
+              <path d="M-40 35 C120 -40 205 100 355 40 S565 -25 680 55" />
+              <path d="M160 -35 C265 95 390 -10 505 50 S690 120 805 -30" />
+              <path d="M730 15 C830 100 925 -25 1060 40 S1160 95 1250 45" />
+              <path d="M655 -40 C590 110 765 155 675 270 S610 440 725 505" />
+              <path d="M715 95 C630 175 790 250 705 345 S655 515 790 665" />
+              <path d="M1230 155 C1090 115 1150 270 1060 305 S1180 430 1250 375" />
+              <path d="M1135 80 C1220 190 1065 230 1155 355 S1100 480 1205 540" />
+              <path d="M-35 470 C55 435 75 495 30 545 S100 615 180 580" />
+              <path d="M100 640 C230 535 345 660 460 585 S615 560 705 625" />
+              <path d="M420 685 C535 575 650 700 805 605 S1040 545 1215 630" />
+              <path d="M850 565 Q900 530 935 570 T1020 575" />
+              <path d="M35 175 Q70 135 95 155" />
+            </g>
+          </svg>
           <div className="hero-copy">
             <span className="hero-pill">
               <span /> A CLEARER PATH TO OPPORTUNITY
