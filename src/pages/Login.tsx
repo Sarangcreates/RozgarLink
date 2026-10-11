@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
 import { useStore } from "../store/useStore";
 import { Logo, Footer } from "../components/Layout";
+import MandalaBackdrop from "../components/MandalaBackdrop";
 export default function Login() {
   const { role: param } = useParams(),
     role = param === "company" ? "company" : "applicant";
@@ -41,12 +42,13 @@ export default function Login() {
         </Link>
       </header>
       <main className="login-main">
+        <MandalaBackdrop />
         <div className="login-intro">
           <span className="hero-pill">
             <ShieldCheck size={15} />
             LOCAL PROTOTYPE
           </span>
-          <h1>
+          <h1 className="welcome-headline">
             {role === "company"
               ? "Build your team."
               : "Your next chapter starts with you."}

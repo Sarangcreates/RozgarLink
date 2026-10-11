@@ -12,6 +12,7 @@ import {
 import { useStore } from "../store/useStore";
 import { Logo, Footer } from "../components/Layout";
 import MandalaBackdrop from "../components/MandalaBackdrop";
+import WelcomeHeadline from "../components/WelcomeHeadline";
 export default function Landing() {
   const { data } = useStore();
   return (
@@ -34,13 +35,7 @@ export default function Landing() {
             <span className="hero-pill">
               <span /> A CLEARER PATH TO OPPORTUNITY
             </span>
-            <h1>
-              Your skills.
-              <br />
-              Your potential.
-              <br />
-              <em>Your next chapter.</em>
-            </h1>
+            <WelcomeHeadline />
             <p>
               Find jobs that fit your skills — fairly and transparently.
               Understand every match, build what’s missing, and move forward

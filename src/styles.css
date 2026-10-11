@@ -364,7 +364,7 @@ textarea {
   border-radius: 50%;
   background: #147e76;
 }
-.hero-copy h1 {
+.welcome-headline {
   font-size: clamp(45px, 5.1vw, 71px);
   font-weight: 750;
   letter-spacing: -3px;
@@ -375,7 +375,7 @@ textarea {
     0 16px 24px #172c3b4d,
     0 24px 40px #172c3b33;
 }
-.hero-copy h1 em {
+.welcome-headline em {
   font-style: normal;
   color: #147e76;
   text-shadow:
@@ -643,23 +643,15 @@ footer small {
   background: #f7faf8;
 }
 .login-main {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 430px;
   gap: 85px;
   padding: 70px 10%;
   align-items: center;
   min-height: calc(100vh - 160px);
-}
-.login-intro h1 {
-  font-size: 47px;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -2px;
-  margin: 24px 0;
-}
-.login-intro h1 em {
-  font-style: normal;
-  color: #147e76;
 }
 .login-intro > p {
   color: #799084;
@@ -1891,7 +1883,7 @@ td small {
     padding: 55px 5%;
     gap: 25px;
   }
-  .hero-copy h1 {
+  .welcome-headline {
     font-size: 56px;
   }
   .hero-match-card {
@@ -1901,9 +1893,6 @@ td small {
     padding: 55px 6%;
     gap: 45px;
     grid-template-columns: 1fr 390px;
-  }
-  .login-intro h1 {
-    font-size: 39px;
   }
   .header-name {
     display: none;
@@ -1961,7 +1950,7 @@ td small {
   .landing-hero {
     gap: 15px;
   }
-  .hero-copy h1 {
+  .welcome-headline {
     font-size: 46px;
     letter-spacing: -2px;
   }
@@ -1991,9 +1980,6 @@ td small {
     margin: auto;
     padding: 35px 25px;
     gap: 20px;
-  }
-  .login-intro h1 {
-    font-size: 34px;
   }
   .login-intro > p,
   .login-intro .notice {
@@ -2036,7 +2022,7 @@ td small {
     grid-template-columns: 1fr;
     padding-top: 45px;
   }
-  .hero-copy h1 {
+  .welcome-headline {
     font-size: 52px;
   }
   .hero-copy > p {
