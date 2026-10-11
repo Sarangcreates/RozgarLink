@@ -1443,6 +1443,34 @@ footer small {
   color: var(--teal);
   filter: drop-shadow(0 3px 5px #147e7626);
 }
+.goal-empty-backdrop {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 34px 24px 48px;
+}
+.goal-empty-backdrop > .hero-circle-backdrop {
+  inset: 0;
+  opacity: 0.3;
+  mask-image: linear-gradient(to right, transparent, black 45%);
+}
+.goal-empty-backdrop > .hero-circle-backdrop svg {
+  width: 580px;
+  max-width: none;
+  left: auto;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke-width: 1.7;
+}
+.goal-empty-backdrop > .empty-state {
+  background: var(--stat-background);
+  border: 1px solid var(--stat-border);
+  box-shadow: var(--stat-shadow);
+}
+.goal-empty-backdrop .empty-state > svg {
+  color: var(--teal);
+}
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

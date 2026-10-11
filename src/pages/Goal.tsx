@@ -11,6 +11,7 @@ import {
 import { compulsorySimilarity } from "../engine/skills";
 import type { Course } from "../engine/types";
 import { Empty, Modal, PageTitle, Stat, TierChip } from "../components/ui";
+import CirclePatternBackdrop from "../components/CirclePatternBackdrop";
 export default function Goal() {
   const [params, setParams] = useSearchParams(),
     { data, session, act, busy } = useStore(),
@@ -22,14 +23,17 @@ export default function Goal() {
     [error, setError] = useState("");
   if (!job)
     return (
-      <Empty
-        title="Choose your goal"
-        text="Select a company and role in your profile to build a learning path."
-      >
-        <Link className="btn primary" to="/profile">
-          Set my goal
-        </Link>
-      </Empty>
+      <div className="goal-empty-backdrop">
+        <CirclePatternBackdrop />
+        <Empty
+          title="Choose your goal"
+          text="Select a company and role in your profile to build a learning path."
+        >
+          <Link className="btn primary" to="/profile">
+            Set my goal
+          </Link>
+        </Empty>
+      </div>
     );
   const gaps = skillGap(a, job),
     path = recommendPath(gaps, data.courses),
